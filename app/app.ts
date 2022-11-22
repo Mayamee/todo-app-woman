@@ -4,9 +4,8 @@ import { appPublicPath } from './utils/paths'
 import apiRouter from './routers/api-router'
 import catchErrorMiddleware from './middleware/catchError-middleware'
 import mongoose from 'mongoose'
-import execEnv from './env/applyEnv'
-
-execEnv()
+import applyEnv from './env/applyEnv'
+applyEnv()
 
 const app = express()
 const PORT = process.env.PORT || '8080'
