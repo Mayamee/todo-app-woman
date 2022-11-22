@@ -14,7 +14,7 @@ class AuthController {
     try {
       const { login, password } = req.body
       validateLogin(login, password)
-			// const candidate = await userService.getUserByLogin(login)
+      // const candidate = await userService.getUserByLogin(login)
     } catch (err) {
       next(err)
     }
