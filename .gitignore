@@ -114,4 +114,4 @@ dist
 
 #.env
 
-env/
+prod.env
