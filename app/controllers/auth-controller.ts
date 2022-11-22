@@ -1,25 +1,23 @@
 import { Request, Response, NextFunction } from 'express'
-import userService from '../services/user-service'
+import UserService from '../services/user-service'
+import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
+import ApiError from '../utils/error/api-error'
 import { validateLogin } from '../utils/validation/validateLogin'
 
-interface IRegisterRequest extends Request {
-  body: {
-    login: string
-    password: string
-  }
-}
-
 class AuthController {
-  async register(req: IRegisterRequest, res: Response, next: NextFunction) {
+  async register(req: IRegisterLoginRequest, res: Response, next: NextFunction) {
     try {
       const { login, password } = req.body
-      validateLogin(login, password)
-      // const candidate = await userService.getUserByLogin(login)
+      const candidate = await UserService.getUserByLogin(login)
+      if (candidate !== null) {
+        throw ApiError.badRequest(`User with login ${login} already exists`)
+      }
+      const userInfo = await UserService.registerUser({ login, password })
     } catch (err) {
       next(err)
     }
   }
-  async login(req: Request, res: Response, next: NextFunction) {
+  async login(req: IRegisterLoginRequest, res: Response, next: NextFunction) {
     try {
     } catch (err) {
       next(err)
