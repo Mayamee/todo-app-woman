@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+#yarn
+.yarn
+
+#vscode
+.vscode
+
+#pnp
+.pnp.*
+
+#.env
+
+env/
