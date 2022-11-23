@@ -24,10 +24,30 @@ class TodoController {
       next(err)
     }
   }
-  async getAllTodos(req: IAuthRequest, res: Response, next: NextFunction) {}
-  async getTodoById(req: IAuthRequest, res: Response, next: NextFunction) {}
-  async updateTodo(req: IAuthRequest, res: Response, next: NextFunction) {}
-  async deleteTodo(req: IAuthRequest, res: Response, next: NextFunction) {}
+  async getAllTodos(req: IAuthRequest, res: Response, next: NextFunction) {
+    try {
+    } catch (err) {
+      next(err)
+    }
+  }
+  async getTodoById(req: IAuthRequest, res: Response, next: NextFunction) {
+    try {
+    } catch (err) {
+      next(err)
+    }
+  }
+  async updateTodo(req: IAuthRequest, res: Response, next: NextFunction) {
+    try {
+    } catch (err) {
+      next(err)
+    }
+  }
+  async deleteTodo(req: IAuthRequest, res: Response, next: NextFunction) {
+    try {
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 export default new TodoController()
