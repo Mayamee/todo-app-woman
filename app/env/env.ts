@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import { Secret } from 'jsonwebtoken'
-import { appDevEnvPath, appProdEnvPath } from '../utils/paths'
+import { appDevEnvPath, appProdEnvPath } from '../utils/filesystem/paths'
 
 const mode = process.env.MODE || 'production'
 dotenv.config({
