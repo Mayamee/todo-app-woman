@@ -9,7 +9,7 @@ export const validateLogin = (login: string, password: string) => {
   if (validator.isEmpty(password)) {
     throw ApiError.badRequest('Password is empty')
   }
-  if (validator.isLength(login, { min: 3, max: 16 })) {
+  if (!validator.isLength(login, { min: 3, max: 16 })) {
     throw ApiError.badRequest('Login must be between 3 and 16 characters')
   }
   if (
@@ -19,7 +19,7 @@ export const validateLogin = (login: string, password: string) => {
     throw ApiError.badRequest('Login must contain only Latin letters and numbers')
   }
   if (
-    validator.isStrongPassword(password, {
+    !validator.isStrongPassword(password, {
       minLength: 8,
       minLowercase: 1,
       minUppercase: 1,
