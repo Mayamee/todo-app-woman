@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express'
-import TokenService from '../services/token-service'
+import TokenService from '../services/auth/token-service'
 import IAuthRequest from '../types/middleware/IAuthRequest'
 import ApiError from '../utils/error/api-error'
 
