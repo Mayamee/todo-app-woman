@@ -5,7 +5,7 @@ const router = Router()
 
 router
   .post('/register', validateRegisterMiddleware, authController.register)
-  .post('/login', authController.login)
-  .post('/logout', authController.logout)
+  .post('login', authController.login)
+  .post('logout', authController.logout)
 
 export default router

@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express'
 import UserService from '../services/user-service'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
 import ApiError from '../utils/error/api-error'
-import { validateLogin } from '../utils/validation/validateLogin'
 
 class AuthController {
   async register(req: IRegisterLoginRequest, res: Response, next: NextFunction) {
