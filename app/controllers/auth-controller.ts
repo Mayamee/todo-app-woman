@@ -40,6 +40,19 @@ class AuthController {
       next(err)
     }
   }
+  async refresh(req: ICookieRequest, res: Response, next: NextFunction) {
+    try {
+      const { refreshToken } = req.cookies
+      const userInfo = await UserService.refreshUser(refreshToken)
+      res.cookie('refreshToken', userInfo.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+      })
+      return res.status(200).json(userInfo)
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 export default new AuthController()

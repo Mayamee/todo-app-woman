@@ -10,5 +10,6 @@ router
   .post('/register', validateLoginRegisterMiddleware, authController.register)
   .post('/login', validateLoginRegisterMiddleware, authController.login)
   .get('/logout', validateRefreshTokenMiddleware, authController.logout)
+  .get('/refresh', validateRefreshTokenMiddleware, authController.refresh)
 
 export default router

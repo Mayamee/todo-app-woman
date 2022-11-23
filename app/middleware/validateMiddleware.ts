@@ -23,7 +23,7 @@ export function validateRefreshTokenMiddleware(req: Request, _res: Response, nex
   try {
     const { refreshToken } = req.cookies as { refreshToken: string | undefined }
     if (!refreshToken) {
-      throw ApiError.unauthorized('No refresh token')
+      throw ApiError.unauthorized('No refresh token provided')
     }
     next()
   } catch (err) {

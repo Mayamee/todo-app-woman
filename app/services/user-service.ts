@@ -40,6 +40,24 @@ class UserService {
     const user = await UserModel.findOne({ login })
     return user
   }
+  async refreshUser(refreshToken: string) {
+    const userData = TokenService.validateRefreshToken(refreshToken)
+    if (!userData) {
+      throw ApiError.unauthorized('Invalid refresh token')
+    }
+    const tokenFromDb = await TokenService.findRefreshToken(refreshToken)
+    if (!tokenFromDb) {
+      throw ApiError.unauthorized('Refresh token was not found')
+    }
+    const user = await this.getUserByLogin(userData.login)
+    if (!user) {
+      throw ApiError.unauthorized('User was not found')
+    }
+    const dto = getUserDto(user.login, user._id)
+    const tokens = TokenService.generateTokens(dto)
+    await TokenService.saveToken(user._id, tokens.refreshToken)
+    return { ...dto, ...tokens }
+  }
 }
 
 export default new UserService()
