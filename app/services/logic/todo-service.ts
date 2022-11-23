@@ -1,4 +1,5 @@
 import TodoModel from '../../models/Todo/TodoModel'
+import IGetTodoSettings from '../../types/services/IGetTodoSettings'
 import ITodoPayload from '../../types/services/ITodoPayload'
 
 class TodoService {
@@ -12,7 +13,7 @@ class TodoService {
     })
     return await todo.save()
   }
-  async getAllTodos(ownerId: string, settings: { limit?: string; page?: string }) {
+  async getAllTodos(ownerId: string, settings: IGetTodoSettings) {
     if (settings.page) {
       const { limit, page } = settings
       const limitNumber = limit ? Number(limit) : 10

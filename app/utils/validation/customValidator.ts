@@ -5,6 +5,9 @@ class CustomValidator {
   isStartWithNumber(value: string) {
     return /^[0-9]/.test(value)
   }
+  isContainOnlyDigits(value: string) {
+    return /^\d+$/.test(value)
+  }
 }
 
 export default new CustomValidator()
