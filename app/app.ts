@@ -4,9 +4,10 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import { appPublicPath } from './utils/filesystem/paths'
 import authRouter from './routers/auth-router'
-import todoRouter from './routers/api-router'
+import todoRouter from './routers/todo-router'
 import catchErrorMiddleware from './middleware/catchError-middleware'
 import { HOST, PORT, DB_CONNECTION_STRING, ORIGIN } from './env/env'
+import authMiddleware from './middleware/auth-middleware'
 
 const app = express()
 
@@ -22,7 +23,7 @@ app.use(cookieParser())
 app.use(express.static(appPublicPath))
 
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/todo', todoRouter)
+app.use('/api/v1/todo', authMiddleware, todoRouter)
 
 app.use(catchErrorMiddleware)
 

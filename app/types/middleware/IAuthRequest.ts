@@ -5,5 +5,5 @@ export default interface IAuthRequest extends Request {
   headers: {
     authorization?: string
   }
-  user: IUserPayload
+  user?: IUserPayload
 }
