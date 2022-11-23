@@ -1,9 +1,9 @@
 import express from 'express'
-import dotenv from 'dotenv'
-import { appPublicPath } from './utils/paths'
-import apiRouter from './routers/api-router'
-import catchErrorMiddleware from './middleware/catchError-middleware'
 import mongoose from 'mongoose'
+import { appPublicPath } from './utils/paths'
+import authRouter from './routers/auth-router'
+import todoRouter from './routers/api-router'
+import catchErrorMiddleware from './middleware/catchError-middleware'
 import applyEnv from './env/applyEnv'
 applyEnv()
 
@@ -18,7 +18,8 @@ if (DB_CONNECTION_STRING === '') {
 
 app.use(express.static(appPublicPath))
 
-app.use('/api/v1/auth', apiRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/todo', todoRouter)
 app.use(catchErrorMiddleware)
 
 main()

@@ -6,7 +6,7 @@ class UserService {
   async registerUser({ login, password }: IUserData) {
     const hashedPassword = await hashPassword(password)
     const user = await UserModel.create({ login, password: hashedPassword })
-		// TODO generate tokens
+    // TODO generate tokens
     return user
   }
   async loginUser(data: any) {}
