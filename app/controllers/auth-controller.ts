@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import UserService from '../services/user-service'
+import ICookieRequest from '../types/controllers/ICookieRequest'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
 
 class AuthController {
@@ -29,7 +30,7 @@ class AuthController {
       next(err)
     }
   }
-  async logout(req: Request, res: Response, next: NextFunction) {
+  async logout(req: ICookieRequest, res: Response, next: NextFunction) {
     try {
       const { refreshToken } = req.cookies
       const token = await UserService.logoutUser(refreshToken)

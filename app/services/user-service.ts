@@ -32,7 +32,10 @@ class UserService {
     await TokenService.saveToken(candidate._id, tokens.refreshToken)
     return { ...dto, ...tokens }
   }
-  async logoutUser(data: any) {}
+  async logoutUser(refreshToken: string) {
+    const token = await TokenService.removeToken(refreshToken)
+    return token
+  }
   async getUserByLogin(login: string) {
     const user = await UserModel.findOne({ login })
     return user
