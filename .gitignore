@@ -116,4 +116,10 @@ dist
 
 prod.env
 
+#docker
+
 docker/**/secrets
+
+#build
+
+build
