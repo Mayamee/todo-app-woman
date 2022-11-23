@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
 import { validateLogin } from '../utils/validation/validateLogin'
 
-export function validateRegisterMiddleware(
+export function validateLoginRegisterMiddleware(
   req: IRegisterLoginRequest,
   _res: Response,
   next: NextFunction
