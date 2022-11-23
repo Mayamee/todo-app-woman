@@ -56,7 +56,7 @@ export function validateGetAllTodosMiddleware(
   next: NextFunction
 ) {
   try {
-		//TODO refactor this
+    //TODO refactor this
     const { limit, page } = req.query
     if (page && !customValidator.isContainOnlyDigits(page)) {
       req.query.page = undefined

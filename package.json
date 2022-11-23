@@ -8,7 +8,7 @@
     "start": "node app.js",
     "build": "rimraf build && tsc && copyfiles yarn.lock package.json build && echo 'Build complete.'",
     "prettify": "prettier --write .",
-    "renderDepsGraph": "madge --image docs/depsGraph/dependency-graph.png app/app.ts"
+    "renderDepsGraph": "madge --image docs/depsGraph/dependency-graph.svg app/app.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
