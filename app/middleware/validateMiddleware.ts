@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
-import { validateLogin } from '../utils/validation/validateLogin'
+import validateLogin from '../utils/validation/validateLogin'
+import validatePassword from '../utils/validation/validatePassword'
 
 export function validateLoginRegisterMiddleware(
   req: IRegisterLoginRequest,
@@ -9,7 +10,8 @@ export function validateLoginRegisterMiddleware(
 ) {
   try {
     const { login, password } = req.body
-    validateLogin(login, password)
+    validateLogin(login)
+    validatePassword(password)
     next()
   } catch (err) {
     next(err)
