@@ -3,7 +3,7 @@ import authController from '../controllers/auth-controller'
 import {
   validateLoginRegisterMiddleware,
   validateRefreshTokenMiddleware,
-} from '../middleware/validateMiddleware'
+} from '../middleware/validate-middleware'
 const router = Router()
 
 router
