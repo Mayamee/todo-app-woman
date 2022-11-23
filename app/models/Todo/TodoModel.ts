@@ -1,5 +1,5 @@
 import { Schema, Types, model } from 'mongoose'
-import todoElemSchema from './TodoElemShema'
+import todoElemSchema from './TodoElemSchema'
 
 const todoSchema = new Schema({
   ownerId: { type: Types.ObjectId, ref: 'User', required: true },
