@@ -1,9 +1,9 @@
 class CustomValidator {
-  isLatinLettersAndNumbers(value: string) {
+  isContainOnlyLatinLettersAndNumbers(value: string) {
     return /^[a-zA-Z0-9]+$/.test(value)
   }
-  wontStartWithNumber(value: string) {
-    return !/^[0-9]/.test(value)
+  isStartWithNumber(value: string) {
+    return /^[0-9]/.test(value)
   }
 }
 
