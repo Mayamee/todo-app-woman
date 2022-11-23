@@ -115,3 +115,5 @@ dist
 #.env
 
 prod.env
+
+docker/**/secrets

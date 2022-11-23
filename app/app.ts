@@ -26,7 +26,7 @@ main()
 
 async function main() {
   try {
-    // await mongoose.connect(DB_CONNECTION_STRING)
+    await mongoose.connect(DB_CONNECTION_STRING)
     app.listen(+PORT, HOST, () => {
       console.log(`Server is running on http://${HOST}:${PORT}`)
     })
