@@ -1,8 +1,6 @@
 export default class ApiError extends Error {
   constructor(public status: number, public message: string) {
     super()
-    this.status = status
-    this.message = message
   }
   static badRequest = (message: string) => new ApiError(400, message)
 
