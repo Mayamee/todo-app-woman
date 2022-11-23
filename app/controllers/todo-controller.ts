@@ -4,6 +4,7 @@ import IAuthRequest from '../types/middleware/IAuthRequest'
 import ICreateTodoRequest from '../types/controllers/ICreateTodoRequest'
 import IUserPayload from '../types/services/IUserPayload'
 import ITodoPayload from '../types/services/ITodoPayload'
+import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
 
 class TodoController {
   async createTodo(req: ICreateTodoRequest, res: Response, next: NextFunction) {
@@ -24,8 +25,16 @@ class TodoController {
       next(err)
     }
   }
-  async getAllTodos(req: IAuthRequest, res: Response, next: NextFunction) {
+  async getAllTodos(req: IGetAllTodoRequest, res: Response, next: NextFunction) {
     try {
+      const { limit, page } = req.query
+      const settings = {
+        limit,
+        page,
+      }
+      const { id: userId } = req.user as IUserPayload
+      const todos = await todoService.getAllTodos(userId, settings)
+      return res.status(200).json(todos)
     } catch (err) {
       next(err)
     }
