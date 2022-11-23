@@ -11,16 +11,16 @@ export default function authMiddleware(req: IAuthRequest, _res: Response, next: 
     }
     const [type, token] = authorization.split(' ')
     if (type !== 'Bearer') {
-			throw ApiError.unauthorized('Supported authorization type: Bearer')
+      throw ApiError.unauthorized('Supported authorization type: Bearer')
     }
     if (!token) {
       throw ApiError.unauthorized('No token provided')
     }
-		const tokenData = TokenService.validateAccessToken(token)
-		if (!tokenData) {
-			throw ApiError.unauthorized('Invalid token')
-		}
-		req.user = tokenData
+    const tokenData = TokenService.validateAccessToken(token)
+    if (!tokenData) {
+      throw ApiError.unauthorized('Invalid token')
+    }
+    req.user = tokenData
     next()
   } catch (err) {
     next(err)
