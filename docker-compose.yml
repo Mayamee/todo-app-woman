@@ -10,6 +10,7 @@ services:
     secrets:
       - mongo_password
   backend:
+    restart: always
     environment:
       - NODE_ENV=production
     build: 
