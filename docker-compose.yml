@@ -5,8 +5,6 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=todo
       - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo_password
-    ports:
-      - 27017:27017
     secrets:
       - mongo_password
   backend:
