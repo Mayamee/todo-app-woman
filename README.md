@@ -1,9 +1,4 @@
 # todo-app-woman
-
-## Dependency graph
-
-![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/main/docs/depsGraph/dependency-graph.svg)
-
 ## How to deploy and use
 
 Clone this repo
@@ -43,3 +38,6 @@ Then run docker-compose to deploy
 ```sh
 docker-compose up -d
 ```
+## Dependency graph
+
+![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/main/docs/depsGraph/dependency-graph.svg)
