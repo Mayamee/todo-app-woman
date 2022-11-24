@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="AQi6_54xIyBhFduPqfRF" name="Todo">
-        <mxGraphModel dx="638" dy="215" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1146" dy="508" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="3" value="Todo" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
-                    <mxGeometry x="110" y="40" width="240" height="180" as="geometry"/>
+                    <mxGeometry width="240" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="owner: Types.ObjectId" style="text;strokeColor=#3A5431;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontColor=#ffffff;" parent="3" vertex="1">
                     <mxGeometry y="30" width="240" height="30" as="geometry"/>
@@ -22,23 +22,25 @@
                 <mxCell id="14" value="body: ITodoBody" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="3" vertex="1">
                     <mxGeometry y="150" width="240" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="" style="edgeStyle=none;html=1;endArrow=diamond;endFill=1;" parent="1" source="15" target="22" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=diamond;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;elbow=vertical;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="15" target="26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="570" y="180" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="15" value="ITodoBody" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="170" width="240" height="60" as="geometry"/>
+                    <mxGeometry x="300" width="240" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" value="ITodoElem[]" style="text;strokeColor=#3700CC;fillColor=#6a00ff;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontColor=#ffffff;" parent="15" vertex="1">
                     <mxGeometry y="30" width="240" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="" style="endArrow=diamond;html=1;exitX=1.002;exitY=0.347;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;exitPerimeter=0;startArrow=diamond;startFill=1;" parent="1" source="14" target="15" edge="1">
+                <mxCell id="21" value="" style="endArrow=diamond;html=1;exitX=1.002;exitY=0.347;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;exitPerimeter=0;startArrow=diamond;startFill=1;edgeStyle=orthogonalEdgeStyle;" parent="1" source="14" target="15" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="380" y="140" as="sourcePoint"/>
                         <mxPoint x="425" y="145" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="22" value="ITodoElem" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="280" width="240" height="120" as="geometry"/>
+                    <mxGeometry x="590" width="240" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="id: Serial" style="text;strokeColor=#A50040;fillColor=#d80073;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontColor=#ffffff;" parent="22" vertex="1">
                     <mxGeometry y="30" width="240" height="30" as="geometry"/>
