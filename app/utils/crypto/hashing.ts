@@ -4,7 +4,9 @@ import bcrypt from 'bcrypt'
  * @param {string} password - password to hash
  * @returns {Promise<string>} hashed password
  * @example
- * hashPassword('test123')
+ * hashPassword('test123').then((hashedPassword) => {
+ * console.log(hashedPassword)
+ * })
  */
 export const hashPassword = async (password: string): Promise<string> => {
   const salt = await bcrypt.genSalt(10)
