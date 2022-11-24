@@ -5,6 +5,60 @@ import TokenModel from '../../models/TokenModel'
 import { JWTPayload } from '../../types/jwt/payload'
 import IUserPayload from '../../types/services/IUserPayload'
 
+/**
+ * @description Service for generating and validating JWT tokens
+ * @class TokenService
+ * @method generateTokens
+ * @description generate access and refresh tokens
+ * @param {JWTPayload} payload - payload for access token
+ * @type {string | object | Buffer} JWTPayload
+ * @returns {{accessToken: string, refreshToken: string}} access and refresh tokens
+ * @example
+ * TokenService.generateTokens({ id: '1' })
+ * @method saveToken
+ * @description save refresh token to database
+ * @param {Object.Id} userId - id of user to bind refresh token
+ * @param {string} refreshToken - refresh token
+ * @returns {Promise<void>}
+ * @example
+ * TokenService.saveToken('637f312923050d8fae620d58', 'refreshToken').then(() => {
+ *  console.log('Refresh token saved')
+ * })
+ * @method removeToken
+ * @description remove refresh token from database
+ * @param {string} refreshToken - refresh token
+ * @returns {Promise<DeletedResult>} result of removing
+ * @example
+ * TokenService.removeToken('refreshToken').then((result) => {
+ * console.log(result)
+ * })
+ * @method findRefreshToken
+ * @description find refresh token in database
+ * @param {string} refreshToken - refresh token
+ * @returns {Promise<Token | null>} found token
+ * @example
+ * TokenService.findRefreshToken('refreshToken').then((token) => {
+ * console.log(token)
+ * })
+ * @method validateRefreshToken
+ * @description validate refresh token
+ * @param {string} refreshToken - refresh token
+ * @returns {Promise<IUserPayload | null>} payload of refresh token
+ * @type {{login: string, id: string}} IUserPayload
+ * @example
+ * TokenService.validateRefreshToken('refreshToken').then((payload) => {
+ * console.log(payload)
+ * })
+ * @method validateAccessToken
+ * @description validate access token
+ * @param {string} accessToken - access token
+ * @returns {Promise<IUserPayload | null>} payload of access token
+ * @type {{login: string, id: string}} IUserPayload
+ * @example
+ * TokenService.validateAccessToken('accessToken').then((payload) => {
+ * console.log(payload)
+ * })
+ */
 class TokenService {
   generateTokens(payload: JWTPayload) {
     const accessToken = jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: '30m' })
