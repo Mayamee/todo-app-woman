@@ -1,7 +1,11 @@
 FROM node:18.12.1-alpine as todo-api
 LABEL maintainer="ponyashcat228@gmail.com"
 WORKDIR /usr/src/app
+ENV NODE_ENV=production
 COPY build .
 EXPOSE 5050
-RUN ["yarn", "install", "--production=true"]
-ENTRYPOINT ["yarn", "start"]
+RUN corepack enable && \
+		corepack prepare yarn@stable --activate && \
+		corepack prepare yarn@3.3.0 --activate
+RUN ["yarn", "install"]
+ENTRYPOINT ["yarn", "node", "app/app.js"]

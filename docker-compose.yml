@@ -1,7 +1,6 @@
-version: '3.5'
-
+version: "3.5"
 services:
-  app-db:
+  db:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=todo
@@ -10,7 +9,16 @@ services:
       - 27017:27017
     secrets:
       - mongo_password
-
+  backend:
+    environment:
+      - NODE_ENV=production
+    build: 
+      context: .
+      dockerfile: docker/api/dockerfile
+    ports:
+      - "5050:5050"
+    depends_on:
+      - db
 secrets:
   mongo_password:
-    file: ./secrets/db_pass
+    file: ./docker/mongo/secrets/db_pass

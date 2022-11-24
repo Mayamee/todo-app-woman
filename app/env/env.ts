@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import { Secret } from 'jsonwebtoken'
 import { appDevEnvPath, appProdEnvPath } from '../utils/filesystem/paths'
 
-const mode = process.env.MODE || 'production'
+const mode = process.env.NODE_ENV || 'production'
 dotenv.config({
   path: mode === 'development' ? appDevEnvPath : appProdEnvPath,
 })
