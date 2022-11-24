@@ -15,7 +15,11 @@ import ApiError from '../utils/error/api-error'
  * @throws {ApiError} 401 - Not authorized if access token is not valid
  * @returns {void}
  */
-export default function authMiddleware(req: IAuthRequest, _res: Response, next: NextFunction): void {
+export default function authMiddleware(
+  req: IAuthRequest,
+  _res: Response,
+  next: NextFunction
+): void {
   try {
     const { authorization } = req.headers
     if (!authorization) {
