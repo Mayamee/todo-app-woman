@@ -10,7 +10,7 @@
     "build:compile": "tsc && echo 'Transpile complete.'",
     "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Config files copied.'",
     "prettify": "prettier --write .",
-    "renderDepsGraph": "madge --image docs/depsGraph/dependency-graph.svg app/app.ts"
+    "renderDepsGraph": "madge --exclude types --image docs/depsGraph/dependency-graph.svg app/app.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
