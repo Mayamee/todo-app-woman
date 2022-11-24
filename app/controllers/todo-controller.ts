@@ -71,8 +71,12 @@ class TodoController {
       next(err)
     }
   }
-  async deleteTodo(req: IAuthRequest, res: Response, next: NextFunction) {
+  async deleteTodo(req: IIdParamsRequest, res: Response, next: NextFunction) {
     try {
+      const { id: userId } = req.user as IUserPayload
+      const { id: todoId } = req.params
+      const todo = await todoService.deleteTodo(userId, todoId)
+      return res.status(200).json(todo)
     } catch (err) {
       next(err)
     }

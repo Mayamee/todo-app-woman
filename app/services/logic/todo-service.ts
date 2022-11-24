@@ -55,7 +55,13 @@ class TodoService {
     )
     return todo
   }
-  async deleteTodo() {}
+  async deleteTodo(ownerId: string, todoId: string) {
+    const todo = await TodoModel.deleteOne({
+      _id: todoId,
+      ownerId,
+    })
+    return todo
+  }
 }
 
 export default new TodoService()
