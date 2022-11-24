@@ -32,6 +32,15 @@ class TodoService {
     })
     return todos
   }
+	async getTodoById(ownerId: string, todoId: string) {
+		const todo = await TodoModel.findOne({
+			_id: todoId,
+			ownerId,
+		})
+		return todo
+	}
+	async updateTodo() {}
+	async deleteTodo() {}
 }
 
 export default new TodoService()

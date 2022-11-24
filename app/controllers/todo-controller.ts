@@ -44,6 +44,8 @@ class TodoController {
     try {
       const { id: userId } = req.user as IUserPayload
       const { id: todoId } = req.params
+			const todo = await todoService.getTodoById(userId, todoId)
+			return res.status(200).json(todo)
     } catch (err) {
       next(err)
     }
