@@ -1,0 +1,7 @@
+FROM node:18.12.1-alpine as todo-api
+LABEL maintainer="ponyashcat228@gmail.com"
+WORKDIR /usr/src/app
+COPY build .
+EXPOSE 5050
+RUN ["yarn", "install", "--production=true"]
+ENTRYPOINT ["yarn", "start"]
