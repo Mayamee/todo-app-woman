@@ -14,7 +14,7 @@ Install dependencies
 ```sh
 yarn install
 ```
-Add secret password file to **docker/mongo/secrets** which is called ***db_pass***
+Add a secret password file to **docker/mongo/secrets** which is called ***db_pass***
 
 Then create ***prod.env*** file in **app/env** directory
 
