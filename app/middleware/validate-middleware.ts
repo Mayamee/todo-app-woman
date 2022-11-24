@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
-import ICreateTodoRequest from '../types/controllers/ICreateTodoRequest'
+import ITodoPayloadRequest from '../types/controllers/ITodoPayloadRequest'
 import ApiError from '../utils/error/api-error'
 import validateLogin from '../utils/validation/validateLogin'
 import validatePassword from '../utils/validation/validatePassword'
 import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
 import customValidator from '../utils/validation/customValidator'
-import IIdParams from '../types/controllers/IIdParams'
+import IIdParamsRequest from '../types/controllers/IIdParamsRequest'
 import { isValidObjectId } from 'mongoose'
 
 export function validateLoginRegisterMiddleware(
@@ -36,8 +36,8 @@ export function validateRefreshTokenMiddleware(req: Request, _res: Response, nex
   }
 }
 
-export function validateCreateTodoMiddleware(
-  req: ICreateTodoRequest,
+export function validateTodoPalyoadMiddleware(
+  req: ITodoPayloadRequest,
   _res: Response,
   next: NextFunction
 ) {
@@ -78,11 +78,15 @@ export function validateGetAllTodosMiddleware(
   }
 }
 
-export function validateParamsIdMiddleware(req: IIdParams, _res: Response, next: NextFunction) {
+export function validateParamsIdMiddleware(
+  req: IIdParamsRequest,
+  _res: Response,
+  next: NextFunction
+) {
   try {
     const { id } = req.params
     if (!id || !isValidObjectId(id)) {
-      throw ApiError.badRequest('Invalid id')
+      throw ApiError.badRequest('Invalid todo id')
     }
     next()
   } catch (err) {

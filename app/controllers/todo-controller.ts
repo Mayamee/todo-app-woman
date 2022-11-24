@@ -1,14 +1,16 @@
 import { NextFunction, Response } from 'express'
 import todoService from '../services/logic/todo-service'
 import IAuthRequest from '../types/middleware/IAuthRequest'
-import ICreateTodoRequest from '../types/controllers/ICreateTodoRequest'
+import ITodoPayloadRequest, {
+  ITodoPayloadAndIdRequest,
+} from '../types/controllers/ITodoPayloadRequest'
 import IUserPayload from '../types/services/IUserPayload'
 import ITodoPayload from '../types/services/ITodoPayload'
 import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
-import IIdParams from '../types/controllers/IIdParams'
+import IIdParamsRequest from '../types/controllers/IIdParamsRequest'
 
 class TodoController {
-  async createTodo(req: ICreateTodoRequest, res: Response, next: NextFunction) {
+  async createTodo(req: ITodoPayloadRequest, res: Response, next: NextFunction) {
     try {
       const { id: userId } = req.user as IUserPayload
       const {
@@ -40,18 +42,31 @@ class TodoController {
       next(err)
     }
   }
-  async getTodoById(req: IIdParams, res: Response, next: NextFunction) {
+  async getTodoById(req: IIdParamsRequest, res: Response, next: NextFunction) {
     try {
       const { id: userId } = req.user as IUserPayload
       const { id: todoId } = req.params
-			const todo = await todoService.getTodoById(userId, todoId)
-			return res.status(200).json(todo)
+      const todo = await todoService.getTodoById(userId, todoId)
+      return res.status(200).json(todo)
     } catch (err) {
       next(err)
     }
   }
-  async updateTodo(req: IAuthRequest, res: Response, next: NextFunction) {
+  async updateTodo(req: ITodoPayloadAndIdRequest, res: Response, next: NextFunction) {
     try {
+      const { id: userId } = req.user as IUserPayload
+      const { id: todoId } = req.params
+      const {
+        body: { title, description, todoBody },
+      } = req
+      const payload: ITodoPayload = {
+        title,
+        description,
+        todoBody,
+        ownerId: userId,
+      }
+      const todo = await todoService.updateTodo(userId, todoId, payload)
+      return res.status(200).json(todo)
     } catch (err) {
       next(err)
     }
