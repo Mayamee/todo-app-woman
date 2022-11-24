@@ -1,7 +1,6 @@
 {
   "name": "todo_api_woman_up",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon .",
