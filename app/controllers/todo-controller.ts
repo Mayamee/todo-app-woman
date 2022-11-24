@@ -5,6 +5,7 @@ import ICreateTodoRequest from '../types/controllers/ICreateTodoRequest'
 import IUserPayload from '../types/services/IUserPayload'
 import ITodoPayload from '../types/services/ITodoPayload'
 import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
+import IIdParams from '../types/controllers/IIdParams'
 
 class TodoController {
   async createTodo(req: ICreateTodoRequest, res: Response, next: NextFunction) {
@@ -39,8 +40,10 @@ class TodoController {
       next(err)
     }
   }
-  async getTodoById(req: IAuthRequest, res: Response, next: NextFunction) {
+  async getTodoById(req: IIdParams, res: Response, next: NextFunction) {
     try {
+      const { id: userId } = req.user as IUserPayload
+      const { id: todoId } = req.params
     } catch (err) {
       next(err)
     }

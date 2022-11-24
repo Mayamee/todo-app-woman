@@ -6,6 +6,8 @@ import validateLogin from '../utils/validation/validateLogin'
 import validatePassword from '../utils/validation/validatePassword'
 import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
 import customValidator from '../utils/validation/customValidator'
+import IIdParams from '../types/controllers/IIdParams'
+import { isValidObjectId } from 'mongoose'
 
 export function validateLoginRegisterMiddleware(
   req: IRegisterLoginRequest,
@@ -69,6 +71,18 @@ export function validateGetAllTodosMiddleware(
     }
     if (limit && customValidator.isContainOnlyDigits(limit) && parseInt(limit) < 0) {
       req.query.limit = undefined
+    }
+    next()
+  } catch (err) {
+    next(err)
+  }
+}
+
+export function validateParamsIdMiddleware(req: IIdParams, _res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params
+    if (!id || !isValidObjectId(id)) {
+      throw ApiError.badRequest('Invalid id')
     }
     next()
   } catch (err) {
