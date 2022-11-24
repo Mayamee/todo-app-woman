@@ -3,6 +3,34 @@ import UserService from '../services/auth/user-service'
 import ICookieRequest from '../types/controllers/ICookieRequest'
 import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
 
+/**
+ * @description Auth controller
+ * @class AuthController
+ * @method register
+ * @description register user
+ * @param {IRegisterLoginRequest} req - request with login and password in body
+ * @param {Response} res - response with user data and tokens
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method login
+ * @description login user
+ * @param {IRegisterLoginRequest} req - request with login and password in body
+ * @param {Response} res - response with user data and tokens
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method logout
+ * @description logout user
+ * @param {ICookieRequest} req - request with refresh token in cookies
+ * @param {Response} res - response with delete result
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method refresh
+ * @description update tokens for user
+ * @param {ICookieRequest} req - request with refresh token in cookies
+ * @param {Response} res - response with new tokens
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ */
 class AuthController {
   async register(req: IRegisterLoginRequest, res: Response, next: NextFunction) {
     try {
