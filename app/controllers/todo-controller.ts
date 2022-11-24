@@ -1,6 +1,5 @@
 import { NextFunction, Response } from 'express'
 import todoService from '../services/logic/todo-service'
-import IAuthRequest from '../types/middleware/IAuthRequest'
 import ITodoPayloadRequest, {
   ITodoPayloadAndIdRequest,
 } from '../types/controllers/ITodoPayloadRequest'
@@ -9,6 +8,35 @@ import ITodoPayload from '../types/services/ITodoPayload'
 import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
 import IIdParamsRequest from '../types/controllers/IIdParamsRequest'
 
+/**
+ * @description Todo controller
+ * @class TodoController
+ * @method createTodo - create todo
+ * @param {ITodoPayloadRequest} req - request with todo payload
+ * @param {Response} res - response with created todo
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method getAllTodos - get all todos
+ * @param {IGetAllTodoRequest} req - request with user payload and query for pagination
+ * @param {Response} res - response with array of todos
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method getTodoById - get todo by id
+ * @param {IIdParamsRequest} req - request with todo id
+ * @param {Response} res - response with todo
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method updateTodo - update todo
+ * @param {ITodoPayloadAndIdRequest} req - request with todo payload and todo id
+ * @param {Response} res - response with update result
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ * @method deleteTodo - delete todo
+ * @param {IIdParamsRequest} req - request with todo id
+ * @param {Response} res - response with delete result
+ * @param {NextFunction} next - next function
+ * @returns {Promise<void>}
+ */
 class TodoController {
   async createTodo(req: ITodoPayloadRequest, res: Response, next: NextFunction) {
     try {
