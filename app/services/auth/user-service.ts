@@ -1,6 +1,6 @@
 import { getUserDto } from '../../dto/user-dto'
 import UserModel from '../../models/UserModel'
-import IUserData from '../../types/services/IUserData'
+import IUserData from '../../types/IUserData'
 import { comparePassword, hashPassword } from '../../utils/crypto/hashing'
 import ApiError from '../../utils/error/api-error'
 import TokenService from './token-service'

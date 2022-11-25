@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 import { Types } from 'mongoose'
 import { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } from '../../env/env'
 import TokenModel from '../../models/TokenModel'
-import { JWTPayload } from '../../types/jwt/payload'
-import IUserPayload from '../../types/services/IUserPayload'
+import { JWTPayload } from '../../types/JwtPayload'
+import IUserPayload from '../../types/IUserPayload'
 
 /**
  * @description Service for generating and validating JWT tokens

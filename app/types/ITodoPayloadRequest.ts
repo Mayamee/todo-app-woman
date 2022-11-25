@@ -1,5 +1,5 @@
-import IAuthRequest from '../middleware/IAuthRequest'
-import ITodoBody from '../services/ITodoBody'
+import IAuthRequest from './IAuthRequest'
+import ITodoBody from './ITodoBody'
 
 export default interface ITodoPayloadRequest extends IAuthRequest {
   body: ITodoBody

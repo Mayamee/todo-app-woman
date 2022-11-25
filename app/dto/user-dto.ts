@@ -1,5 +1,5 @@
 import { Types } from 'mongoose'
-import IUserDto from '../types/dto/IUserDto'
+import IUserDto from '../types/IUserDto'
 /**
  * @description get data transfer object for generating JWT tokens
  * @function getUserDto

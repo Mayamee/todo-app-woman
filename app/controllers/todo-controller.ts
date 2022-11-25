@@ -1,12 +1,10 @@
 import { NextFunction, Response } from 'express'
 import todoService from '../services/logic/todo-service'
-import ITodoPayloadRequest, {
-  ITodoPayloadAndIdRequest,
-} from '../types/controllers/ITodoPayloadRequest'
-import IUserPayload from '../types/services/IUserPayload'
-import ITodoPayload from '../types/services/ITodoPayload'
-import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
-import IIdParamsRequest from '../types/controllers/IIdParamsRequest'
+import ITodoPayloadRequest, { ITodoPayloadAndIdRequest } from '../types/ITodoPayloadRequest'
+import IUserPayload from '../types/IUserPayload'
+import ITodoPayload from '../types/ITodoPayload'
+import IGetAllTodoRequest from '../types/IGetAllTodoRequest'
+import IIdParamsRequest from '../types/IIdParamsRequest'
 
 /**
  * @description Todo controller

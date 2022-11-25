@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
-import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
-import ITodoPayloadRequest from '../types/controllers/ITodoPayloadRequest'
+import { IRegisterLoginRequest } from '../types/IRegisterLogin'
+import ITodoPayloadRequest from '../types/ITodoPayloadRequest'
 import ApiError from '../utils/error/api-error'
 import validateLogin from '../utils/validation/validateLogin'
 import validatePassword from '../utils/validation/validatePassword'
-import IGetAllTodoRequest from '../types/middleware/IGetAllTodoRequest'
+import IGetAllTodoRequest from '../types/IGetAllTodoRequest'
 import customValidator from '../utils/validation/customValidator'
-import IIdParamsRequest from '../types/controllers/IIdParamsRequest'
+import IIdParamsRequest from '../types/IIdParamsRequest'
 import { isValidObjectId } from 'mongoose'
 
 /**

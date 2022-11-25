@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import IUserPayload from '../services/IUserPayload'
+import IUserPayload from './IUserPayload'
 
 export default interface IAuthRequest extends Request {
   headers: {

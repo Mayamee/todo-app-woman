@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express'
 import UserService from '../services/auth/user-service'
-import ICookieRequest from '../types/controllers/ICookieRequest'
-import { IRegisterLoginRequest } from '../types/controllers/IRegisterLogin'
+import ICookieRequest from '../types/ICookieRequest'
+import { IRegisterLoginRequest } from '../types/IRegisterLogin'
 
 /**
  * @description Auth controller

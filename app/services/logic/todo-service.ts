@@ -1,6 +1,6 @@
 import TodoModel from '../../models/Todo/TodoModel'
-import IGetTodoSettings from '../../types/services/IGetTodoSettings'
-import ITodoPayload from '../../types/services/ITodoPayload'
+import IGetTodoSettings from '../../types/IGetTodoSettings'
+import ITodoPayload from '../../types/ITodoPayload'
 
 /**
  * @description Service for working with todo
