@@ -1,0 +1,45 @@
+{
+  "name": "todo_api_woman_up",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon .",
+    "start": "node app/app.js",
+    "build": "npm-run-all --serial build:clear build:compile build:copy-configs && echo 'Build complete.'",
+    "build:clear": "rimraf build && echo 'Build directory cleared.'",
+    "build:compile": "tsc && echo 'Transpile complete.'",
+    "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Config files copied.'",
+    "prettify": "prettier --write ."
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.11.9",
+    "@types/validator": "^13.7.10",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  },
+  "volta": {
+    "node": "18.12.1",
+    "yarn": "3.3.0"
+  }
+}
