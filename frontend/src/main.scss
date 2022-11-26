@@ -1,8 +1,9 @@
-#root{
-	font-family: 'Roboto', monospace;
-}
+@import "fonts.scss";
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
