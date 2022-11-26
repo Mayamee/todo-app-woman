@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon .",
-    "build": "npm-run-all --serial build:clear build:compile build:copy-configs && echo 'Build complete.'",
-    "build:clear": "rimraf build && echo 'Build directory cleared.'",
-    "build:compile": "tsc && echo 'Transpile complete.'",
-    "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Config files copied.'",
+    "build": "npm-run-all --serial build:clear build:compile build:copy-public-folder build:copy-configs && echo 'Backend build complete.'",
+    "build:clear": "rimraf build && echo 'Backend build directory cleared.'",
+    "build:compile": "tsc && echo 'Backend transpile complete.'",
+    "build:copy-public-folder": "yarn node scripts/copyPublicFolder.js",
+    "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Backend config files copied.'",
     "prettify": "prettier --write ."
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "@types/validator": "^13.7.10",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "mkdirp": "^1.0.4",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
