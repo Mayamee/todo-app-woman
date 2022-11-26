@@ -54,10 +54,11 @@ docker-compose up -d
 
 Backend
 
-![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/frontend/docs/depsGraph/backend/dependency-graph.svg)
+![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/frontend/docs/images/dependency_graph/backend/dependency-graph.svg)
+
 Frontend (Component depedencies)
 
-![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/frontend/docs/depsGraph/frontend/dependency-graph.svg)
+![Deps graph](https://raw.githubusercontent.com/Mayamee/todo-app-woman/frontend/docs/images/dependency_graph/frontend/dependency-graph.svg)
 
 ## Todo model
 
