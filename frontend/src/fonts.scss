@@ -29,16 +29,16 @@
 // Ubuntu medium normal
 @font-face {
   font-family: 'Ubuntu';
-  src: url("./assets/fonts/Ubuntu/Ubuntu-Medium.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
+  src: url('./assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 // Ubuntu medium italic
 @font-face {
-	font-family: 'Ubuntu';
-	src: url("./assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf") format("truetype");
-	font-weight: 500;
-	font-style: italic;
+  font-family: 'Ubuntu';
+  src: url('./assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
 }
 // Ubuntu bold normal
 @font-face {
@@ -49,8 +49,8 @@
 }
 // Ubuntu bold italic
 @font-face {
-	font-family: 'Ubuntu';
-	src: url("./assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf") format("truetype");
-	font-weight: 700;
-	font-style: italic;
+  font-family: 'Ubuntu';
+  src: url('./assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
 }
