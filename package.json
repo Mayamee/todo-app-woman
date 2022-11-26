@@ -8,6 +8,7 @@
     "prettify": "npm-run-all --parallel prettify:frontend prettify:backend",
     "generate-deps-graph": "npm-run-all --parallel generate-deps-graph:frontend generate-deps-graph:backend",
     "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
+    "build:gen-env": "yarn node scripts/setProductionEnviroment.js",
     "build:inject-frontend-build": "copyfiles -u 2 frontend/build/**/* build/app/public && echo 'App frontend build injected.'",
     "build:create-public-folder": "mkdirp build/app/public && echo 'App created public folder.'",
     "build:clear": "rimraf build && echo 'App build directory cleared'",
