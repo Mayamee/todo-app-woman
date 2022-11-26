@@ -1,17 +1,17 @@
 {
-	"folders": [
-		{
-			"path": "backend"
-		},
-		{
-			"path": "frontend"
-		},
-		{
-			"name": "root",
-			"path": "."
-		}
-	],
-	"settings": {
+  "folders": [
+    {
+      "path": "backend"
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
     "typescript.tsdk": ".yarn/sdks/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true
   }
