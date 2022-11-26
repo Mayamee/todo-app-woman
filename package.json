@@ -2,12 +2,17 @@
   "name": "todo_api_woman_up",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A simple API for a todo list",
+  "description": "Todo API",
   "scripts": {
     "install-deps": "npm-run-all --parallel install-deps:frontend install-deps:backend",
     "prettify": "npm-run-all --parallel prettify:frontend prettify:backend",
     "generate-deps-graph": "npm-run-all --parallel generate-deps-graph:frontend generate-deps-graph:backend",
-    "build:compile": "npm-run-all --parallel build:frontend build:backend",
+    "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
+    "build:inject-frontend-build": "copyfiles -u 2 frontend/build/**/* build/app/public && echo 'App frontend build injected.'",
+    "build:create-public-folder": "mkdirp build/app/public && echo 'App created public folder.'",
+    "build:clear": "rimraf build && echo 'App build directory cleared'",
+    "build:move-backend-to-root": "copyfiles -u 1 backend/build/**/* .",
+    "build:compile": "npm-run-all --parallel build:frontend build:backend && echo 'App compile complete.'",
     "build:backend": "cd backend && yarn build",
     "build:frontend": "cd frontend && yarn build",
     "prettify:frontend": "cd frontend && yarn prettify",
@@ -18,8 +23,11 @@
     "generate-deps-graph:backend": "madge --exclude types --image docs/depsGraph/backend/dependency-graph.svg backend/app/app.ts"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "madge": "^5.0.1",
-    "npm-run-all": "^4.1.5"
+    "mkdirp": "^1.0.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   },
   "volta": {
     "node": "18.12.1",
