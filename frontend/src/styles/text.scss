@@ -1,0 +1,71 @@
+@import './adaptive.scss';
+
+$family: 'Ubuntu', sans-serif;
+
+@mixin page-title {
+  font-family: $family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+
+  @include desktop {
+    font-size: 22px;
+  }
+
+  @include laptop {
+    font-size: 24px;
+  }
+
+  @include tablets {
+    font-size: 24px;
+  }
+
+  @include phones {
+    font-size: 20px;
+  }
+}
+
+@mixin title {
+  font-family: $family;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 20px;
+
+  @include desktop {
+    font-size: 18px;
+  }
+
+  @include phones {
+    font-size: 16px;
+  }
+}
+
+@mixin subtitle {
+  font-family: $family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+
+  @include laptop {
+    font-size: 16px;
+  }
+
+  @include phones {
+    font-size: 16px;
+  }
+}
+
+@mixin paragraph {
+  font-family: $family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+
+  @include laptop {
+    font-size: 15px;
+  }
+
+  @include phones {
+    font-size: 14px;
+  }
+}
