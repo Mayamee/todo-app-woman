@@ -3,7 +3,7 @@ import { useScroll } from 'framer-motion'
 import ToolBar from '../../components/ToolBar/ToolBar'
 import Container from '../Container/Container'
 import styles from './Layout.module.scss'
-import Divider from '../../components/Divider/Divider'
+import Plug from '../../components/Plug/Plug'
 interface ILayoutProps {
   children: ReactNode
 }
@@ -32,7 +32,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
           <ToolBar />
         </Container>
       </header>
-      <Divider height={80} />
+      <Plug height={80} />
       <main className={styles.main}>
         <Container>{children}</Container>
       </main>

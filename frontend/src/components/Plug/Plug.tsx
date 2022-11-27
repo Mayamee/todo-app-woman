@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-interface IDividerProps {
+interface IPlugProps {
   height: number
 }
 
-const Divider = styled.div<IDividerProps>`
+const Plug = styled.div<IPlugProps>`
   height: ${({ height }) => height}px;
 `
 
-export default Divider
+export default Plug
