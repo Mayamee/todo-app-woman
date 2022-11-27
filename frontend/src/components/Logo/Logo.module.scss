@@ -1,0 +1,12 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &-icon {
+  }
+  &-text {
+    font-size: 22px;
+    font-weight: 500;
+    color: #5f6368;
+  }
+}
