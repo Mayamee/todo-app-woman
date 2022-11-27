@@ -23,7 +23,7 @@
     "prettify:backend": "cd backend && yarn prettify",
     "install-deps:frontend": "cd frontend && yarn install",
     "install-deps:backend": "cd backend && yarn install",
-    "generate-deps-graph:frontend": "madge --exclude '.(s?css|svg)$' --image docs/images/dependency_graph/frontend/dependency-graph.svg frontend/src/main.tsx",
+    "generate-deps-graph:frontend": "madge --exclude '.(s?css|svg|jpg|png)$' --image docs/images/dependency_graph/frontend/dependency-graph.svg frontend/src/main.tsx",
     "generate-deps-graph:backend": "madge --exclude types --image docs/images/dependency_graph/backend/dependency-graph.svg backend/app/app.ts"
   },
   "devDependencies": {
