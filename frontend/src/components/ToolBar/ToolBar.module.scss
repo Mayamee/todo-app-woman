@@ -1,0 +1,16 @@
+.toolbar-body {
+  display: flex;
+  align-items: center;
+  &-menuButton {
+    flex-grow: 0;
+  }
+  &-logo {
+    flex-grow: 0;
+  }
+  &-search {
+    flex-grow: 1;
+  }
+  &-avatar {
+    flex-grow: 0;
+  }
+}

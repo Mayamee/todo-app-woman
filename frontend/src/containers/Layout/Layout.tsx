@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import ToolBar from '../../components/ToolBar/ToolBar'
 import Container from '../Container/Container'
 import styles from './Layout.module.scss'
 interface ILayoutProps {
@@ -9,14 +10,12 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <Container>Some header content</Container>
+        <ToolBar />
       </header>
       <main className={styles.main}>
         <Container>{children}</Container>
       </main>
-      <footer className={styles.footer}>
-        <Container>Some footer content</Container>
-      </footer>
+      <footer className={styles.footer}>Some footer content</footer>
     </div>
   )
 }
