@@ -40,8 +40,8 @@ const ButtonContainer = styled.button<IIconButtonContainerProps>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 200%;
-    height: 200%;
+    width: 170%;
+    height: 170%;
     background: transparent;
     border-radius: 50%;
     z-index: -1;

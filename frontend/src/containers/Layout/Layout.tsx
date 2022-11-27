@@ -3,6 +3,7 @@ import { useScroll } from 'framer-motion'
 import ToolBar from '../../components/ToolBar/ToolBar'
 import Container from '../Container/Container'
 import styles from './Layout.module.scss'
+import Divider from '../../components/Divider/Divider'
 interface ILayoutProps {
   children: ReactNode
 }
@@ -21,11 +22,17 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
   }, [])
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${isScrolling ? styles['header-scroll'] : ''}`}
+        style={{
+          height: 80,
+        }}
+      >
         <Container fluid>
           <ToolBar />
         </Container>
       </header>
+      <Divider height={80} />
       <main className={styles.main}>
         <Container>{children}</Container>
       </main>
