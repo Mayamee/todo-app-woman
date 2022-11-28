@@ -22,7 +22,7 @@ const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align }) => 
     return () => document.removeEventListener('click', closeMenu)
   }, [])
   return (
-    <div id={dropdownId} className={styles['dropdown_menu']}>
+    <nav id={dropdownId} className={styles['dropdown_menu']}>
       <IconButton
         size={enterIconSize}
         icon={enterIcon}
@@ -41,7 +41,7 @@ const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align }) => 
       >
         {children}
       </ul>
-    </div>
+    </nav>
   )
 }
 
