@@ -1,0 +1,22 @@
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  gap: 0.5rem;
+  transition: background-color 0.2s linear;
+  &-icon {
+    flex-grow: 0;
+  }
+  &-content {
+    flex-grow: 1;
+  }
+  &:hover {
+    background: rgb(236, 236, 236);
+  }
+  &:active {
+    background: rgb(221, 221, 221);
+  }
+}

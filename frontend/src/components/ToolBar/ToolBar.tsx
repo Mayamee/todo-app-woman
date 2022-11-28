@@ -2,10 +2,13 @@ import { ChangeEvent, FC, useState } from 'react'
 import styles from './ToolBar.module.scss'
 import { ReactComponent as MenuIcon } from '../../assets/images/burger.svg'
 import TemplateAvatar from '../../assets/images/template.jpg'
-import IconButton from '../UI/IconButton/IconButton'
+import { ReactComponent as AllIcon } from '../../assets/images/all.svg'
+import { ReactComponent as ArchiveIcon } from '../../assets/images/archive.svg'
 import Logo from '../Logo/Logo'
 import Avatar from '../UI/Avatar/Avatar'
 import { Search } from '../UI/Search/Search'
+import Menu from '../Menu/Menu'
+import MenuItem from '../Menu/MenuItem/MenuItem'
 
 interface IToolBarProps {}
 
@@ -17,7 +20,14 @@ const ToolBar: FC<IToolBarProps> = () => {
   return (
     <div className={styles['toolbar-body']}>
       <div className={styles['toolbar-body-menuButton']}>
-        <IconButton size={25} icon={<MenuIcon />} />
+        <Menu enterIconSize={25} enterIcon={<MenuIcon />} align="right">
+          <MenuItem icon={<AllIcon />} inconSize={25}>
+            Todos
+          </MenuItem>
+          <MenuItem icon={<ArchiveIcon />} inconSize={25}>
+            Archive
+          </MenuItem>
+        </Menu>
       </div>
       <div className={styles['toolbar-body-logo']}>
         <Logo />

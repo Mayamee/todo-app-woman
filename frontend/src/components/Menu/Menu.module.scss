@@ -1,0 +1,24 @@
+.dropdown_menu {
+  position: relative;
+  ul {
+    list-style: none;
+    padding: 0.7rem 0;
+    margin: 0;
+  }
+  &-body {
+    z-index: 9999;
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+    top: 50px;
+    left: -245px;
+    width: 250px;
+    &-right {
+      left: 20px;
+      width: 250px;
+    }
+    background: rgb(248, 248, 248);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in-out;
+  }
+}
