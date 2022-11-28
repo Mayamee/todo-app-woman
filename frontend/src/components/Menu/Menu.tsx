@@ -7,10 +7,11 @@ interface IMenuProps {
   enterIcon: ReactNode
   enterIconSize: number
   children?: ReactNode
+  roundedIcon?: boolean
   align: 'left' | 'right'
 }
 
-const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align }) => {
+const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align, roundedIcon }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const dropdownId = useId()
   useEffect(() => {
@@ -26,6 +27,7 @@ const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align }) => 
       <IconButton
         size={enterIconSize}
         icon={enterIcon}
+        rounded={roundedIcon}
         onClick={() => setIsMenuOpen((prev) => !prev)}
       />
       <ul

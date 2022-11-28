@@ -9,7 +9,6 @@ import Avatar from '../UI/Avatar/Avatar'
 import { Search } from '../UI/Search/Search'
 import Menu from '../Menu/Menu'
 import MenuItem from '../Menu/MenuItem/MenuItem'
-
 interface IToolBarProps {}
 
 const ToolBar: FC<IToolBarProps> = () => {

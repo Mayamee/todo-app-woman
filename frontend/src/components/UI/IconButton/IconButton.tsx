@@ -5,10 +5,27 @@ interface IIconButtonContainerProps {
   size: number | { width: number; height: number }
 }
 
+interface IIconWrapperProps {
+  rounded?: boolean
+}
+
 interface IIconButtonProps extends IIconButtonContainerProps {
   icon: ReactNode
+  rounded?: boolean
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
+const IconWrapper = styled.div<IIconWrapperProps>`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: ${({ rounded }) => (rounded ? '50%' : '0')};
+  > img,
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
 
 const ButtonContainer = styled.button<IIconButtonContainerProps>`
   padding: 0;
@@ -49,16 +66,11 @@ const ButtonContainer = styled.button<IIconButtonContainerProps>`
   width: ${({ size }) => (typeof size === 'number' ? size : size.width)}px;
   height: ${({ size }) => (typeof size === 'number' ? size : size.height)}px;
   cursor: pointer;
-  > * {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `
-const IconButton: FC<IIconButtonProps> = ({ icon, size, onClick }) => {
+const IconButton: FC<IIconButtonProps> = ({ icon, size, onClick, rounded }) => {
   return (
     <ButtonContainer size={size} type="button" onClick={onClick}>
-      {icon}
+      <IconWrapper rounded={rounded}>{icon}</IconWrapper>
     </ButtonContainer>
   )
 }
