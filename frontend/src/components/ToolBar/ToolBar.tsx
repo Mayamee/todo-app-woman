@@ -2,9 +2,9 @@ import { FC } from 'react'
 import styles from './ToolBar.module.scss'
 import { ReactComponent as MenuIcon } from '../../assets/images/burger.svg'
 import TemplateAvatar from '../../assets/images/template.jpg'
-import IconButton from '../IconButton/IconButton'
+import IconButton from '../UI/IconButton/IconButton'
 import Logo from '../Logo/Logo'
-import Avatar from '../Avatar/Avatar'
+import Avatar from '../UI/Avatar/Avatar'
 
 interface IToolBarProps {}
 
