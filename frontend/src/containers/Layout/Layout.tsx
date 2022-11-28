@@ -4,6 +4,7 @@ import ToolBar from '../../components/ToolBar/ToolBar'
 import Container from '../Container/Container'
 import styles from './Layout.module.scss'
 import Plug from '../../components/Plug/Plug'
+import { HEADER_HEIGHT } from '../../constants/Static'
 interface ILayoutProps {
   children: ReactNode
 }
@@ -25,14 +26,14 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <header
         className={`${styles.header} ${isScrolling ? styles['header-scroll'] : ''}`}
         style={{
-          height: 80,
+          height: HEADER_HEIGHT,
         }}
       >
         <Container fluid>
           <ToolBar />
         </Container>
       </header>
-      <Plug height={80} />
+      <Plug height={HEADER_HEIGHT} />
       <main className={styles.main}>
         <Container>{children}</Container>
       </main>
