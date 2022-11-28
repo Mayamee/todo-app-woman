@@ -1,7 +1,6 @@
 .search {
   overflow: hidden;
-  max-width: 600px;
-  min-width: 300px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +9,7 @@
   padding: 0 15px;
   height: 60px;
   position: relative;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   transition: background-color, box-shadow 0.2s ease;
   &-focused {
     background-color: #fff;

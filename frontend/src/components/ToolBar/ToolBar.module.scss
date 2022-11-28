@@ -1,3 +1,4 @@
+@import '../../styles/adaptive.scss';
 .toolbar-body {
   height: 100%;
   display: flex;
@@ -6,14 +7,36 @@
   padding: 0 1rem;
   &-menuButton {
     flex-grow: 0;
+    order: 0;
   }
   &-logo {
     flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 30px;
+    order: 1;
+    @include tablets {
+      margin-right: 15px;
+    }
+    @include bigPhones {
+      margin-right: 0;
+      order: 3;
+    }
   }
   &-search {
     flex-grow: 1;
+    order: 2;
+    @include bigPhones {
+    }
   }
   &-avatar {
+    margin-left: 100px;
     flex-grow: 0;
+    order: 3;
+    @include tablets {
+      margin-left: 30px;
+    }
+    @include bigPhones {
+      display: none;
+    }
   }
 }
