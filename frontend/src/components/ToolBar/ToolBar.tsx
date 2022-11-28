@@ -9,6 +9,7 @@ import Avatar from '../UI/Avatar/Avatar'
 import { Search } from '../UI/Search/Search'
 import Menu from '../Menu/Menu'
 import MenuItem from '../Menu/MenuItem/MenuItem'
+import { TOOLBAR_MENU_ITEM_ICON_SIZE } from '../../constants/Static'
 interface IToolBarProps {}
 
 const ToolBar: FC<IToolBarProps> = () => {
@@ -19,11 +20,11 @@ const ToolBar: FC<IToolBarProps> = () => {
   return (
     <div className={styles['toolbar-body']}>
       <div className={styles['toolbar-body-menuButton']}>
-        <Menu enterIconSize={25} enterIcon={<MenuIcon />} align="right">
-          <MenuItem icon={<AllIcon />} inconSize={25}>
+        <Menu enterIconSize={30} enterIcon={<MenuIcon />} align="right">
+          <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Todos
           </MenuItem>
-          <MenuItem icon={<ArchiveIcon />} inconSize={25}>
+          <MenuItem icon={<ArchiveIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Archive
           </MenuItem>
         </Menu>
@@ -35,7 +36,17 @@ const ToolBar: FC<IToolBarProps> = () => {
         <Search placeholder="Search" onChange={handleSearchChange.bind(null)} />
       </div>
       <div className={styles['toolbar-body-avatar']}>
-        <Avatar size={40} image={TemplateAvatar} rounded />
+        <Menu
+          enterIcon={<img src={TemplateAvatar} alt="Avatar" />}
+          enterIconSize={40}
+          roundedIcon
+          align="left"
+        >
+          <MenuItem>some user</MenuItem>
+          <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
+            Logout
+          </MenuItem>
+        </Menu>
       </div>
     </div>
   )
