@@ -4,16 +4,19 @@ import { ReactComponent as MenuIcon } from '../../assets/images/burger.svg'
 import TemplateAvatar from '../../assets/images/template.jpg'
 import { ReactComponent as AllIcon } from '../../assets/images/all.svg'
 import { ReactComponent as ArchiveIcon } from '../../assets/images/archive.svg'
+import { ReactComponent as LogoutIcon } from '../../assets/images/logout.svg'
 import Logo from '../Logo/Logo'
-import Avatar from '../UI/Avatar/Avatar'
 import { Search } from '../UI/Search/Search'
 import Menu from '../Menu/Menu'
 import MenuItem from '../Menu/MenuItem/MenuItem'
 import { TOOLBAR_MENU_ITEM_ICON_SIZE } from '../../constants/Static'
+import useMediaQuery from '../../hooks/useMediaQuery'
+import MediaQueries from '../../constants/MediaQueries'
 interface IToolBarProps {}
 
 const ToolBar: FC<IToolBarProps> = () => {
   const [searchValue, setSearchValue] = useState('')
+  const isBigPhone = useMediaQuery(MediaQueries.bigPhone)
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
   }
@@ -21,12 +24,18 @@ const ToolBar: FC<IToolBarProps> = () => {
     <div className={styles['toolbar-body']}>
       <div className={styles['toolbar-body-menuButton']}>
         <Menu enterIconSize={30} enterIcon={<MenuIcon />} align="right">
+          {isBigPhone && <MenuItem>some user</MenuItem>}
           <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Todos
           </MenuItem>
           <MenuItem icon={<ArchiveIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Archive
           </MenuItem>
+          {isBigPhone && (
+            <MenuItem icon={<LogoutIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
+              Logout
+            </MenuItem>
+          )}
         </Menu>
       </div>
       <div className={styles['toolbar-body-logo']}>
@@ -43,7 +52,7 @@ const ToolBar: FC<IToolBarProps> = () => {
           align="left"
         >
           <MenuItem>some user</MenuItem>
-          <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
+          <MenuItem icon={<LogoutIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Logout
           </MenuItem>
         </Menu>
