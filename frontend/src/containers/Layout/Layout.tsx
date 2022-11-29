@@ -5,6 +5,7 @@ import Container from '../Container/Container'
 import styles from './Layout.module.scss'
 import Plug from '../../components/shared//Plug/Plug'
 import { HEADER_HEIGHT } from '../../constants/Static'
+import { AuthPopup } from '../../components/AuthPopup/AuthPopup'
 interface ILayoutProps {
   children: ReactNode
 }
@@ -40,6 +41,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <footer className={styles.footer}>
         <Container fluid>Some footer content</Container>
       </footer>
+      <AuthPopup />
     </div>
   )
 }

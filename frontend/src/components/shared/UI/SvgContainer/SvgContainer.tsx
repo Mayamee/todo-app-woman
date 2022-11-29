@@ -4,10 +4,10 @@ import styled from 'styled-components'
 interface ISvgDiv {
   size:
     | {
-        width: number
-        height: number
+        width: string
+        height: string
       }
-    | number
+    | string
   borderRadius?: number
   fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 }
@@ -16,8 +16,8 @@ interface ISvgContainerProps extends ISvgDiv {
 }
 
 const SvgDiv = styled.div<ISvgDiv>`
-  width: ${({ size }) => (typeof size === 'number' ? size : size.width)}px;
-  height: ${({ size }) => (typeof size === 'number' ? size : size.height)}px;
+  width: ${({ size }) => (typeof size === 'string' ? size : size.width)};
+  height: ${({ size }) => (typeof size === 'string' ? size : size.height)};
   overflow: hidden;
   border-radius: ${({ borderRadius }) => borderRadius || 0}px;
   > svg {

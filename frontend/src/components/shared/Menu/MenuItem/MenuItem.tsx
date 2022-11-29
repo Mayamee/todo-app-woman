@@ -3,7 +3,7 @@ import SvgContainer from '../../UI/SvgContainer/SvgContainer'
 import styles from './MenuItem.module.scss'
 
 interface IMenuItemProps {
-  inconSize?: number
+  inconSize?: string
   icon?: ReactNode
   children: ReactNode
   onClick?: (event: MouseEvent<HTMLLIElement>) => void
