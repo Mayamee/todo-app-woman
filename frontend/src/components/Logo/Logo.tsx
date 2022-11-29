@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import SvgContainer from '../UI/SvgContainer/SvgContainer'
+import SvgContainer from '../shared/UI/SvgContainer/SvgContainer'
 import { ReactComponent as LogoIcon } from '../../assets/images/logo.svg'
 import styles from './Logo.module.scss'
 

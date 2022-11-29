@@ -3,7 +3,7 @@ import { useScroll } from 'framer-motion'
 import ToolBar from '../../components/ToolBar/ToolBar'
 import Container from '../Container/Container'
 import styles from './Layout.module.scss'
-import Plug from '../../components/Plug/Plug'
+import Plug from '../../components/shared//Plug/Plug'
 import { HEADER_HEIGHT } from '../../constants/Static'
 interface ILayoutProps {
   children: ReactNode

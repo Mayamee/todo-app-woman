@@ -1,6 +1,5 @@
 import { FC, ReactNode, useEffect, useId, useState } from 'react'
 import styles from './Menu.module.scss'
-import hasParentId from '../../utils/DOM/hasParentId'
 import IconButton from '../UI/IconButton/IconButton'
 
 interface IMenuProps {
@@ -9,6 +8,16 @@ interface IMenuProps {
   children?: ReactNode
   roundedIcon?: boolean
   align: 'left' | 'right'
+}
+
+const hasParentId = (node: HTMLElement, id: string) => {
+  while (true) {
+    if (node.id === id) {
+      return true
+    }
+    if (!node.parentNode) return false
+    node = node.parentNode as HTMLElement
+  }
 }
 
 const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align, roundedIcon }) => {

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useRef, useState } from 'react'
 import styles from './Search.module.scss'
-import { ReactComponent as SearchIcon } from '../../../assets/images/search.svg'
-import { ReactComponent as CloseIcon } from '../../../assets/images/close.svg'
+import { ReactComponent as SearchIcon } from './assets/search.svg'
+import { ReactComponent as CloseIcon } from './assets/close.svg'
 import IconButton from '../IconButton/IconButton'
 
 interface ISearchProps {
