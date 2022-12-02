@@ -9,7 +9,7 @@
     "gen-env": "yarn node scripts/setProductionEnviroment.js",
     "prettify": "npm-run-all --parallel prettify:frontend prettify:backend",
     "install-deps": "npm-run-all --parallel install-deps:frontend install-deps:backend",
-    "generate-deps-graph": "npm-run-all --parallel generate-deps-graph:frontend generate-deps-graph:backend",
+    "gen-deps-graph": "npm-run-all --parallel generate-deps-graph:frontend generate-deps-graph:backend",
     "dev:backend": "cd backend && yarn dev",
     "dev:frontend": "cd frontend && yarn dev",
     "build:inject-frontend-build": "copyfiles -u 2 frontend/build/**/* build/app/public && echo 'App frontend build injected.'",
