@@ -65,7 +65,7 @@ class UserService {
   async registerUser({ login, password }: IUserData) {
     const candidate = await this.getUserByLogin(login)
     if (candidate !== null) {
-      throw ApiError.badRequest(`User with login ${login} already exists`)
+      throw ApiError.badRequest(`User already exists`)
     }
     const hashedPassword = await hashPassword(password)
     const user = await UserModel.create({ login, password: hashedPassword })
@@ -77,11 +77,11 @@ class UserService {
   async loginUser({ login, password }: IUserData) {
     const candidate = await this.getUserByLogin(login)
     if (candidate === null) {
-      throw ApiError.badRequest(`User with login ${login} does not exist`)
+      throw ApiError.badRequest('Invalid login or password')
     }
     const isPasswordValid = await comparePassword(password, candidate.password)
     if (!isPasswordValid) {
-      throw ApiError.badRequest('Invalid password')
+      throw ApiError.badRequest('Invalid login or password')
     }
     const dto = getUserDto(candidate.login, candidate._id)
     const tokens = TokenService.generateTokens(dto)

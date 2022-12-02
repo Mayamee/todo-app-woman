@@ -26,7 +26,7 @@ const validateLogin = (login: string): void => {
     throw ApiError.badRequest('Login must start with a letter')
   }
   if (!customValidator.isContainOnlyLatinLettersAndNumbers(login)) {
-    throw ApiError.badRequest('Login must contain only Latin letters and numbers')
+    throw ApiError.badRequest('Login must contain only latin letters and numbers')
   }
 }
 export default validateLogin
