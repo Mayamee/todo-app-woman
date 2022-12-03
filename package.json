@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "Todo API",
+	"private": false,
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn prettify"
+    }
+  },
   "scripts": {
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
@@ -34,11 +40,6 @@
     "npm-run-all": "^4.1.5",
     "prompt": "^1.3.0",
     "rimraf": "^3.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn prettify"
-    }
   },
   "volta": {
     "node": "18.12.1",
