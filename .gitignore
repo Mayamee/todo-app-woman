@@ -123,7 +123,3 @@ docker/**/secrets
 #build
 
 build
-
-#husky
-
-.husky

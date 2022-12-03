@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "Todo API",
-  "husky": {
-    "hooks": {
-      "precommit": "precommit"
-    }
-  },
   "scripts": {
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
@@ -31,7 +26,6 @@
     "generate-deps-graph:frontend": "madge --exclude '.(s?css|svg|jpg|png|[tj]s)$' --image docs/images/dependency_graph/frontend/dependency-graph.svg frontend/src/main.tsx",
     "generate-deps-graph:backend": "madge --exclude types --image docs/images/dependency_graph/backend/dependency-graph.svg backend/app/app.ts",
     "postinstall": "husky install",
-    "precommit": "yarn prettify",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
