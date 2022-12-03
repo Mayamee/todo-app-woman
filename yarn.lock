@@ -1002,6 +1002,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "husky@npm:8.0.2"
+  bin:
+    husky: lib/bin.js
+  checksum: e101656fcb56163d610488f186448c78b132626aa427094489d886ce9374955a90274912b0f3a34af3326eaa74977883b032e5f701d7aaf4554daa5a7931be43
+  languageName: node
+  linkType: hard
+
 "ieee754@npm:^1.1.13":
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
@@ -2346,6 +2355,7 @@ __metadata:
   resolution: "todo_api_woman_up@workspace:."
   dependencies:
     copyfiles: ^2.4.1
+    husky: ^8.0.2
     madge: ^5.0.1
     mkdirp: ^1.0.4
     npm-run-all: ^4.1.5
