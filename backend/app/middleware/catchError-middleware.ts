@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 
 import ApiError from '../utils/error/api-error'
 
@@ -15,8 +15,7 @@ import ApiError from '../utils/error/api-error'
 export default function catchErrorMiddleware(
   err: ApiError | Error,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ): void {
   if (err instanceof ApiError) {
     res.status(err.status).json({ message: err.message })

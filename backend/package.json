@@ -9,7 +9,9 @@
     "build:compile": "tsc && echo 'Backend transpile complete.'",
     "build:copy-public-folder": "yarn node scripts/copyPublicFolder.js",
     "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Backend config files copied.'",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -29,15 +31,22 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.11.9",
     "@types/validator": "^13.7.10",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "latest",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
     "mkdirp": "^1.0.4",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.3"
+    "typescript": "*"
   },
   "volta": {
     "node": "18.12.1",
