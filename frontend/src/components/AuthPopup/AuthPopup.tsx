@@ -5,13 +5,12 @@ import { ReactComponent as BgImage } from '../../assets/images/bg-auth.svg'
 import { ReactComponent as AlertIcon } from '../../assets/images/alert.svg'
 import { AUTH } from '../../constants/Static'
 import TooltipButton from '../shared/UI/TooltipButton/TooltipButton'
-interface IAuthPopup {}
 type Profile = {
   login: string
   password: string
 }
 
-export const AuthPopup: FC<IAuthPopup> = () => {
+export const AuthPopup: FC<unknown> = () => {
   const [isLogin, setIsLogin] = useState(true)
   const authTextKey = isLogin ? 'login' : 'register'
   const {

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build && echo 'Frontend build complete.'",
     "preview": "vite preview",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
@@ -23,11 +25,23 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.0.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "latest",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.0",
     "react-is": "^18.2.0",
     "sass": "^1.56.1",
-    "typescript": "^4.6.4",
+    "typescript": "*",
     "vite": "^3.2.3",
     "vite-plugin-svgr": "^2.2.2"
   }

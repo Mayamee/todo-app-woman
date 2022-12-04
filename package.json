@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
-    "lint:fix": "npm-run-all --parallel lint:fix:backend",
+    "lint:fix": "npm-run-all --parallel lint:fix:frontend lint:fix:backend",
     "prettify": "npm-run-all --parallel prettify:frontend prettify:backend",
-    "lint": "npm-run-all --parallel lint:backend",
+    "lint": "npm-run-all --parallel lint:frontend lint:backend",
     "gen-env": "yarn node scripts/setProductionEnviroment.js",
     "install-deps": "npm-run-all --parallel install-deps:frontend install-deps:backend",
     "gen-deps-graph": "npm-run-all --parallel generate-deps-graph:frontend generate-deps-graph:backend",

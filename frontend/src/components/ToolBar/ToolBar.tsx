@@ -12,10 +12,9 @@ import MenuItem from '../shared/Menu/MenuItem/MenuItem'
 import { TOOLBAR_MENU_ITEM_ICON_SIZE } from '../../constants/Static'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import MediaQueries from '../../constants/MediaQueries'
-interface IToolBarProps {}
 
-const ToolBar: FC<IToolBarProps> = () => {
-  const [searchValue, setSearchValue] = useState('')
+const ToolBar: FC<unknown> = () => {
+  const [, setSearchValue] = useState('')
   const isBigPhone = useMediaQuery(MediaQueries.bigPhone)
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
