@@ -10,17 +10,17 @@ import IIdParamsRequest from '../types/IIdParamsRequest'
 import { isValidObjectId } from 'mongoose'
 
 /**
- * @description Middleware for validating login and password from request body
+ * Middleware for validating login and password from request body
  * @function validateLoginRegisterMiddleware
  * @param {IRegisterLoginRequest} req - request with login and password in body
  * @param {Response} res - response
  * @param {NextFunction} next - next function
- * @returns {void}
+ * @return {void} void
  *
  */
 export function validateLoginRegisterMiddleware(
   req: IRegisterLoginRequest,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): void {
   try {
@@ -34,17 +34,17 @@ export function validateLoginRegisterMiddleware(
 }
 
 /**
- * @description Middleware for validating Refresh Token from cookies
+ * Middleware for validating Refresh Token from cookies
  * @function validateRefreshTokenMiddleware
  * @param {Request} req - request with refresh token in cookies
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @throws {ApiError} 401 - if refresh token is not provided
- * @returns {void}
+ * @return {void} void
  */
 export function validateRefreshTokenMiddleware(
   req: Request,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): void {
   try {
@@ -59,17 +59,17 @@ export function validateRefreshTokenMiddleware(
 }
 
 /**
- * @description Middleware for validating todo payload from request body
+ * Middleware for validating todo payload from request body
  * @function validateTodoPalyoadMiddleware
  * @param {ITodoPayloadRequest} req - request with todo payload in body
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @throws {ApiError} 400 - if todo payload is not valid
- * @returns {void}
+ * @return {void}
  */
 export function validateTodoPalyoadMiddleware(
   req: ITodoPayloadRequest,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): void {
   try {
@@ -84,18 +84,17 @@ export function validateTodoPalyoadMiddleware(
 }
 
 /**
- * @description Middleware for validating query pagination params from request query
+ * Middleware for validating query pagination params from request query
  * If query params are not valid, default values are used
  * @function validateGetAllTodosMiddleware
  * @param {IGetAllTodoRequest} req - request with query pagination params
  * @param {Response} res - response
  * @param {NextFunction} next - next function
- * @returns {void}
+ * @return {void} void
  */
-
 export function validateGetAllTodosMiddleware(
   req: IGetAllTodoRequest,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): void {
   try {
@@ -119,17 +118,17 @@ export function validateGetAllTodosMiddleware(
 }
 
 /**
- * @description Middleware for validating todo id from request params
+ * Middleware for validating todo id from request params
  * @function validateTodoIdMiddleware
  * @param {IIdParamsRequest} req - request with todo id in params
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @throws {ApiError} 400 - if todo id is not valid
- * @returns {void}
+ * @return {void}
  */
 export function validateParamsIdMiddleware(
   req: IIdParamsRequest,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): void {
   try {

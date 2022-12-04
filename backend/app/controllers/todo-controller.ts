@@ -7,36 +7,19 @@ import IGetAllTodoRequest from '../types/IGetAllTodoRequest'
 import IIdParamsRequest from '../types/IIdParamsRequest'
 
 /**
- * @description Todo controller
- * @class TodoController
- * @method createTodo - create todo
- * @param {ITodoPayloadRequest} req - request with todo payload
- * @param {Response} res - response with created todo
- * @param {NextFunction} next - next function
- * @returns {Promise<void>}
- * @method getAllTodos - get all todos
- * @param {IGetAllTodoRequest} req - request with user payload and query for pagination
- * @param {Response} res - response with array of todos
- * @param {NextFunction} next - next function
- * @returns {Promise<void>}
- * @method getTodoById - get todo by id
- * @param {IIdParamsRequest} req - request with todo id
- * @param {Response} res - response with todo
- * @param {NextFunction} next - next function
- * @returns {Promise<void>}
- * @method updateTodo - update todo
- * @param {ITodoPayloadAndIdRequest} req - request with todo payload and todo id
- * @param {Response} res - response with update result
- * @param {NextFunction} next - next function
- * @returns {Promise<void>}
- * @method deleteTodo - delete todo
- * @param {IIdParamsRequest} req - request with todo id
- * @param {Response} res - response with delete result
- * @param {NextFunction} next - next function
- * @returns {Promise<void>}
+ * Todo controller that contains all the methods for todo
  */
 class TodoController {
-  async createTodo(req: ITodoPayloadRequest, res: Response, next: NextFunction) {
+  /**
+   * Method for creating todo that takes payload from
+   * request body and user id from request user
+   * and passes it to todo service
+   * @param {ITodoPayloadRequest} req - request with todo payload
+   * @param {Response} res - response with created todo
+   * @param {NextFunction} next - next function
+   * @return {Promise<void>} void promise
+   */
+  async createTodo(req: ITodoPayloadRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id: userId } = req.user as IUserPayload
       const {
@@ -49,12 +32,20 @@ class TodoController {
         ownerId: userId,
       }
       const todoInfo = await todoService.createTodo(payload)
-      return res.status(200).json(todoInfo)
+      res.status(200).json(todoInfo)
     } catch (err) {
       next(err)
     }
   }
-  async getAllTodos(req: IGetAllTodoRequest, res: Response, next: NextFunction) {
+  /**
+   * Method for getting all todos that takes user id from
+   * request user and passes it to todo service
+   * @param {IGetAllTodoRequest} req - request with user payload and query for pagination
+   * @param {Response} res - response with array of todos
+   * @param {NextFunction} next - next function
+   * @return {Promise<void>} void promise
+   */
+  async getAllTodos(req: IGetAllTodoRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { limit, page } = req.query
       const settings = {
@@ -63,22 +54,43 @@ class TodoController {
       }
       const { id: userId } = req.user as IUserPayload
       const todos = await todoService.getAllTodos(userId, settings)
-      return res.status(200).json(todos)
+      res.status(200).json(todos)
     } catch (err) {
       next(err)
     }
   }
-  async getTodoById(req: IIdParamsRequest, res: Response, next: NextFunction) {
+  /**
+   * Method for getting todo by id that takes user id from
+   * request user and passes it to todo service
+   * @param {IIdParamsRequest} req - request with todo id
+   * @param {Response} res - response with todo
+   * @param {NextFunction} next - next function
+   * @return {Promise<void>} void promise
+   */
+  async getTodoById(req: IIdParamsRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id: userId } = req.user as IUserPayload
       const { id: todoId } = req.params
       const todo = await todoService.getTodoById(userId, todoId)
-      return res.status(200).json(todo)
+      res.status(200).json(todo)
     } catch (err) {
       next(err)
     }
   }
-  async updateTodo(req: ITodoPayloadAndIdRequest, res: Response, next: NextFunction) {
+  /**
+   * Method for updating todo that takes payload from
+   * request body and user id from request user
+   * and passes it to todo service
+   * @param {ITodoPayloadAndIdRequest} req - request with todo payload and todo id
+   * @param {Response} res - response with update result
+   * @param {NextFunction} next - next function
+   * @return {Promise<void>} void promise
+   */
+  async updateTodo(
+    req: ITodoPayloadAndIdRequest,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id: userId } = req.user as IUserPayload
       const { id: todoId } = req.params
@@ -92,17 +104,25 @@ class TodoController {
         ownerId: userId,
       }
       const todo = await todoService.updateTodo(userId, todoId, payload)
-      return res.status(200).json(todo)
+      res.status(200).json(todo)
     } catch (err) {
       next(err)
     }
   }
-  async deleteTodo(req: IIdParamsRequest, res: Response, next: NextFunction) {
+  /**
+   * Method for deleting todo that takes user id from
+   * request user and passes it to todo service
+   * @param {IIdParamsRequest} req - request with todo id
+   * @param {Response} res - response with delete result
+   * @param {NextFunction} next - next function
+   * @return {Promise<void>} void promise
+   */
+  async deleteTodo(req: IIdParamsRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id: userId } = req.user as IUserPayload
       const { id: todoId } = req.params
       const todo = await todoService.deleteTodo(userId, todoId)
-      return res.status(200).json(todo)
+      res.status(200).json(todo)
     } catch (err) {
       next(err)
     }

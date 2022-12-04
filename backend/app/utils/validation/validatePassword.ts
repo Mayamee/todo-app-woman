@@ -7,7 +7,7 @@ import ApiError from '../error/api-error'
  * @param {string} password - password to validate
  * @throws {ApiError} 400 - Password is empty
  * @throws {ApiError} 400 - Password must contain at least 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 symbol
- * @returns {void}
+ * @return {void}
  * @example
  * validatePassword('test123')
  * validatePassword('test123!')

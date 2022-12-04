@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { Router as router } from 'express'
 import todoController from '../controllers/todo-controller'
 import {
   validateGetAllTodosMiddleware,
@@ -35,12 +35,12 @@ import {
  * @param {function} middleware - validateParamsIdMiddleware - validate provided todo id
  * @param {function} middleware - todoController.deleteTodo - delete todo
  */
-const router = Router()
-router
+const todoRouter = router()
+todoRouter
   .post('/create', validateTodoPalyoadMiddleware, todoController.createTodo)
   .get('/all', validateGetAllTodosMiddleware, todoController.getAllTodos)
   .get('/:id', validateParamsIdMiddleware, todoController.getTodoById)
   .put('/:id', validateParamsIdMiddleware, validateTodoPalyoadMiddleware, todoController.updateTodo)
   .delete('/:id', validateParamsIdMiddleware, todoController.deleteTodo)
 
-export default router
+export default todoRouter

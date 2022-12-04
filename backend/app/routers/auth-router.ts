@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { Router as router } from 'express'
 import authController from '../controllers/auth-controller'
 import {
   validateLoginRegisterMiddleware,
@@ -31,11 +31,10 @@ import {
  * @param {function} middleware - validateRefreshTokenMiddleware - validate refresh token
  * @param {function} middleware - authController.refresh - refresh tokens
  */
-const router = Router()
-router
+const authRouter = router()
   .post('/register', validateLoginRegisterMiddleware, authController.register)
   .post('/login', validateLoginRegisterMiddleware, authController.login)
   .get('/logout', validateRefreshTokenMiddleware, authController.logout)
   .get('/refresh', validateRefreshTokenMiddleware, authController.refresh)
 
-export default router
+export default authRouter

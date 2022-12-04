@@ -1,71 +1,29 @@
 import TodoModel from '../../models/Todo/TodoModel'
+import IDeleteResult from '../../types/IDeleteResult'
 import IGetTodoSettings from '../../types/IGetTodoSettings'
 import ITodoPayload from '../../types/ITodoPayload'
 
 /**
- * @description Service for working with todo
- * @class TodoService
- * @method createTodo
- * @description create todo
- * @param {ITodoPayload} payload - payload for todo
- * @returns {Promise<ITodoPayload>} created todo
- * @example
- * TodoService.createTodo({
- * title: 'test',
- * description: 'test',
- * todoBody: 'test',
- * ownerID: 'someObjectId',
- * }).then((todo) => {
- * console.log(todo)
- * })
- * getAllTodos
- * @description get all todos
- * @param ownerId - owner id
- * @param {IGetTodoSettings} settings - settings for getting todos
- * @returns {Promise<ITodoPayload[] | []>} todos
- * @example
- * TodoService.getAllTodos('someObjectId', {
- * limit: 10,
- * page: 1,
- * }).then((todos) => {
- * console.log(todos)
- * })
- * @method getTodoById
- * @description get todo by id
- * @param {string} ownerId - owner id
- * @param {string} id - todo id
- * @returns {Promise<ITodoPayload | null>} todo
- * @example
- * TodoService.getTodoById('someObjectId', 'someObjectId').then((todo) => {
- * console.log(todo)
- * })
- * @method updateTodo
- * @description update todo
- * @param {string} ownerId - owner id
- * @param {string} id - todo id
- * @param {ITodoPayload} payload - payload for todo
- * @returns {Promise<UpdateResult>} updated todo
- * @example
- * TodoService.updateTodo('someObjectId', 'someObjectId', {
- * title: 'test',
- * description: 'test',
- * todoBody: 'test',
- * ownerID: 'someObjectId',
- * }).then((result) => {
- * console.log(result)
- * })
- * @method deleteTodo
- * @description delete todo
- * @param {string} ownerId - owner id
- * @param {string} id - todo id
- * @returns {Promise<DeleteResult>} deleted todo
- * @example
- * TodoService.deleteTodo('someObjectId', 'someObjectId').then((result) => {
- * console.log(result)
- * })
+ * Todo Service that contains all the methods for
+ * database interaction with todo model
  */
 class TodoService {
-  async createTodo(payload: ITodoPayload) {
+  /**
+   * Creates a new todo in the database and returns the created todo
+   * @param {ITodoPayload} payload - payload for todo
+   * @return {Promise<ITodoPayload>} created todo
+   * TODO: Type the payload
+   * @example
+   * TodoService.createTodo({
+   * title: 'test',
+   * description: 'test',
+   * todoBody: 'test',
+   * ownerID: 'someObjectId',
+   * }).then((todo) => {
+   * console.log(todo)
+   * })
+   */
+  async createTodo(payload: ITodoPayload): Promise<any> {
     const { title, description, todoBody, ownerId } = payload
     const todo = await TodoModel.create({
       title,
@@ -75,7 +33,21 @@ class TodoService {
     })
     return await todo.save()
   }
-  async getAllTodos(ownerId: string, settings: IGetTodoSettings) {
+  /**
+   * Get all todos from the database and returns the todos
+   * @param {string} ownerId - owner id of the todo
+   * @param {IGetTodoSettings} settings - settings for getting todos
+   * @return {Promise<ITodoPayload[] | []>} todos
+   * TODO: Type the payload
+   * @example
+   * TodoService.getAllTodos('someObjectId', {
+   * limit: 10,
+   * page: 1,
+   * }).then((todos) => {
+   * console.log(todos)
+   * })
+   */
+  async getAllTodos(ownerId: string, settings: IGetTodoSettings): Promise<any> {
     if (settings.page) {
       const { limit, page } = settings
       const limitNumber = limit ? Number(limit) : 10
@@ -94,14 +66,34 @@ class TodoService {
     })
     return todos
   }
-  async getTodoById(ownerId: string, todoId: string) {
+  /**
+   * Get todo by id from the database and returns the todo if it exists
+   * if todo doesn't exist returns null
+   * @param {string} ownerId - owner id
+   * @param {string} todoId - todo id
+   * @return {Promise<ITodoPayload | null>} todo
+   * TODO: Type the payload
+   * @example
+   * TodoService.getTodoById('someObjectId', 'someObjectId').then((todo) => {
+   * console.log(todo)
+   * })
+   */
+  async getTodoById(ownerId: string, todoId: string): Promise<any> {
     const todo = await TodoModel.findOne({
       _id: todoId,
       ownerId,
     })
     return todo
   }
-  async updateTodo(ownerId: string, todoId: string, payload: ITodoPayload) {
+  /**
+   * Updates a todo in the database and returns the updated todo
+   * @param {string} ownerId - owner id of the todo
+   * @param {string} todoId - todo id of the todo
+   * @param {ITodoPayload} payload - payload for todo update
+   * @return {Promise<UpdateResult>} updated todo
+   * TODO: Type the payload
+   */
+  async updateTodo(ownerId: string, todoId: string, payload: ITodoPayload): Promise<any> {
     const { title, description, todoBody } = payload
     const todo = await TodoModel.updateOne(
       {
@@ -117,7 +109,13 @@ class TodoService {
     )
     return todo
   }
-  async deleteTodo(ownerId: string, todoId: string) {
+  /**
+   * Deletes a todo in the database and returns delete result
+   * @param {string} ownerId - owner id of the todo
+   * @param {string} todoId - todo id of the todo
+   * @return {Promise<DeleteResult>} deleted todo
+   */
+  async deleteTodo(ownerId: string, todoId: string): Promise<IDeleteResult> {
     const todo = await TodoModel.deleteOne({
       _id: todoId,
       ownerId,

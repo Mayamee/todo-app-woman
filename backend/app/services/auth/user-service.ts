@@ -1,68 +1,31 @@
 import { getUserDto } from '../../dto/user-dto'
 import UserModel from '../../models/UserModel'
-import IUserData from '../../types/IUserData'
+import IDeleteResult from '../../types/IDeleteResult'
+import ITodoWithTokensPayload from '../../types/ITodoWithTokensPayload'
+import IUserData, { IUserDataWithId } from '../../types/IUserData'
 import { comparePassword, hashPassword } from '../../utils/crypto/hashing'
 import ApiError from '../../utils/error/api-error'
 import TokenService from './token-service'
+
 /**
- * @description Service for user authentication
- * @class UserService
- * @method registerUser
- * @description register user
- * @param {IUserData} userData - user data
- * @type {{login: string, id: string}} IUserData
- * @throws {ApiError} 400 - User with provided login already exists
- * @returns {Promise<{accessToken: string, refreshToken: string, login: string, id: ObjectId}>} user data
- * @example
- * UserService.registerUser({
- * login: 'test',
- * password: 'test',
- * }).then((data) => {
- * console.log(data)
- * })
- * @method loginUser
- * @description login user
- * @param {IUserData} userData - user data
- * @type {{login: string, id: string}} IUserData
- * @throws {ApiError} 400 - User with provided login does not exist
- * @returns {Promise<{accessToken: string, refreshToken: string, login: string, id: ObjectId}>} user data
- * @example
- * UserService.loginUser({
- * login: 'test',
- * password: 'test',
- * }).then((data) => {
- * console.log(data)
- * })
- * @method logoutUser
- * @description logout user
- * @param {string} refreshToken - refresh token
- * @throws {ApiError} 400 - User with provided refresh token does not exist
- * @returns {Promise<DeleteResult>}
- * @example
- * UserService.logoutUser('refreshToken').then((data) => {
- * console.log(data)
- * })
- * @method getUserByLogin
- * @description get user by login
- * @param {string} login - user login
- * @returns {Promise<{login: string, password: string} | null>} user data
- * @example
- * UserService.getUserByLogin('test').then((data) => {
- * console.log(data)
- * })
- * @method refreshUser
- * @description update tokens of user
- * @param {string} refreshToken - refresh token
- * @throws {ApiError} 401 - Invalid refresh token
- * @throws {ApiError} 401 - Refresh token was not found
- * @returns {Promise<{accessToken: string, refreshToken: string, login: string, id: ObjectId}>} user data
- * @example
- * UserService.refreshUser('refreshToken').then((data) => {
- * console.log(data)
- * })
+ * Service for user authentication that
+ * contains all the methods for user authentication
  */
 class UserService {
-  async registerUser({ login, password }: IUserData) {
+  /**
+   * Register user in database and return user data
+   * @param {IUserData} userData - user data
+   * @throws {ApiError} 400 - User with provided login already exists
+   * @return {Promise<ITodoWithTokensPayload>} user data
+   * @example
+   * UserService.registerUser({
+   * login: 'test',
+   * password: 'test',
+   * }).then((data) => {
+   * console.log(data)
+   * })
+   */
+  async registerUser({ login, password }: IUserData): Promise<ITodoWithTokensPayload> {
     const candidate = await this.getUserByLogin(login)
     if (candidate !== null) {
       throw ApiError.badRequest(`User already exists`)
@@ -74,7 +37,20 @@ class UserService {
     await TokenService.saveToken(user._id, tokens.refreshToken)
     return { ...dto, ...tokens }
   }
-  async loginUser({ login, password }: IUserData) {
+  /**
+   * Login user in database and return user data with tokens
+   * @param {IUserData} userData - user data
+   * @throws {ApiError} 400 - User with provided login does not exist
+   * @return {Promise<ITodoWithTokensPayload>} user data
+   * @example
+   * UserService.loginUser({
+   * login: 'test',
+   * password: 'test',
+   * }).then((data) => {
+   * console.log(data)
+   * })
+   */
+  async loginUser({ login, password }: IUserData): Promise<ITodoWithTokensPayload> {
     const candidate = await this.getUserByLogin(login)
     if (candidate === null) {
       throw ApiError.badRequest('Invalid login or password')
@@ -88,15 +64,44 @@ class UserService {
     await TokenService.saveToken(candidate._id, tokens.refreshToken)
     return { ...dto, ...tokens }
   }
-  async logoutUser(refreshToken: string) {
+  /**
+   * Logout user in database and return delete result
+   * @param {string} refreshToken - refresh token
+   * @return {Promise<IDeleteResult>} delete result
+   * @example
+   * UserService.logoutUser('refreshToken').then((data) => {
+   * console.log(data)
+   * })
+   */
+  async logoutUser(refreshToken: string): Promise<IDeleteResult> {
     const token = await TokenService.removeToken(refreshToken)
     return token
   }
-  async getUserByLogin(login: string) {
+  /**
+   * Get user by login from database and return user data
+   * @param {string} login - user login
+   * @return {Promise<IUserDataWithId | null>} user data
+   * @example
+   * UserService.getUserByLogin('test').then((data) => {
+   * console.log(data)
+   * })
+   */
+  async getUserByLogin(login: string): Promise<IUserDataWithId | null> {
     const user = await UserModel.findOne({ login })
     return user
   }
-  async refreshUser(refreshToken: string) {
+  /**
+   * Update tokens of user in database and return user data with tokens
+   * @param {string} refreshToken - refresh token
+   * @throws {ApiError} 401 - Invalid refresh token
+   * @throws {ApiError} 401 - Refresh token was not found
+   * @return {Promise<ITodoWithTokensPayload>} user data
+   * @example
+   * UserService.refreshUser('refreshToken').then((data) => {
+   * console.log(data)
+   * })
+   */
+  async refreshUser(refreshToken: string): Promise<ITodoWithTokensPayload> {
     const userData = TokenService.validateRefreshToken(refreshToken)
     if (!userData) {
       throw ApiError.unauthorized('Invalid refresh token')

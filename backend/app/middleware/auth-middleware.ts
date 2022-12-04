@@ -4,7 +4,7 @@ import IAuthRequest from '../types/IAuthRequest'
 import ApiError from '../utils/error/api-error'
 
 /**
- * @description Middleware for user authentication and validation of access token
+ * Middleware for user authentication and validation of access token
  * If the user is authorized, the user data is written to the request
  * @function authMiddleware
  * @param {IAuthRequest} req - request with authorization header
@@ -13,13 +13,9 @@ import ApiError from '../utils/error/api-error'
  * @throws {ApiError} 401 - Not authorized if authorization header is not provided
  * @throws {ApiError} 401 - Not authorized if supporte token type is not Bearer
  * @throws {ApiError} 401 - Not authorized if access token is not valid
- * @returns {void}
+ * @return {void} void
  */
-export default function authMiddleware(
-  req: IAuthRequest,
-  _res: Response,
-  next: NextFunction
-): void {
+export default function authMiddleware(req: IAuthRequest, res: Response, next: NextFunction): void {
   try {
     const { authorization } = req.headers
     if (!authorization) {

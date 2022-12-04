@@ -10,8 +10,8 @@
     "build:copy-public-folder": "yarn node scripts/copyPublicFolder.js",
     "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Backend config files copied.'",
     "prettify": "prettier --write .",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint": "eslint . --ext '.ts'",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -36,9 +36,12 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "latest",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "mkdirp": "^1.0.4",
     "nodemon": "^2.0.20",

@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 /**
  * @function hashPassword
  * @param {string} password - password to hash
- * @returns {Promise<string>} hashed password
+ * @return {Promise<string>} hashed password
  * @example
  * hashPassword('test123').then((hashedPassword) => {
  * console.log(hashedPassword)
@@ -17,7 +17,7 @@ export const hashPassword = async (password: string): Promise<string> => {
  * @function comparePassword
  * @param {string} password - password to compare
  * @param {string} hash - hash to compare
- * @returns {Promise<boolean>} true if password hash and provided hash are equal
+ * @return {Promise<boolean>} true if password hash and provided hash are equal
  * @example
  * comparePassword("123", "b8dhffn5bf").then((result) => {
  *  console.log(result)

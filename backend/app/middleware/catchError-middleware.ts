@@ -10,7 +10,7 @@ import ApiError from '../utils/error/api-error'
  * @param {Request} req - request
  * @param {Response} res - response
  * @param {NextFunction} next - next function
- * @returns {void}
+ * @return {void}
  */
 export default function catchErrorMiddleware(
   err: ApiError | Error,

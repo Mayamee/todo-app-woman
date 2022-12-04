@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "build": "npm-run-all --serial build:clear build:compile build:move-backend-to-root build:create-public-folder build:inject-frontend-build && echo 'App build done.'",
+		"lint:fix": "npm-run-all --parallel lint:fix:backend",
     "prettify": "npm-run-all --parallel prettify:frontend prettify:backend",
     "lint": "npm-run-all --parallel lint:backend",
     "gen-env": "yarn node scripts/setProductionEnviroment.js",
@@ -27,6 +28,9 @@
     "generate-deps-graph:frontend": "madge --exclude '.(s?css|svg|jpg|png|[tj]s)$' --image docs/images/dependency_graph/frontend/dependency-graph.svg frontend/src/main.tsx",
     "generate-deps-graph:backend": "madge --exclude types --image docs/images/dependency_graph/backend/dependency-graph.svg backend/app/app.ts",
     "lint:backend": "cd backend && yarn lint",
+    "lint:frontend": "cd frontend && yarn lint",
+    "lint:backend:fix": "cd backend && yarn lint:fix",
+    "lint:frontend:fix": "cd frontend && yarn lint:fix",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"

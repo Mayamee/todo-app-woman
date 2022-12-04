@@ -10,7 +10,7 @@ import customValidator from './customValidator'
  * @throws {ApiError} 400 - Login must be between 3 and 16 characters
  * @throws {ApiError} 400 - Login must start with a letter
  * @throws {ApiError} 400 - Login must contain only Latin letters and numbers
- * @returns {void}
+ * @return {void}
  * @example
  * validateLogin('test')
  * validateLogin('test123')

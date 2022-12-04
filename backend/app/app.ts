@@ -28,8 +28,12 @@ app.use('/api/v1/todo', authMiddleware, todoRouter)
 app.use(catchErrorMiddleware)
 
 main()
-
-async function main() {
+/**
+ * @description Main function
+ * @function main
+ * @return {Promise<void>}
+ */
+async function main(): Promise<void> {
   try {
     await mongoose.connect(DB_CONNECTION_STRING)
     app.listen(+PORT, HOST, () => {
