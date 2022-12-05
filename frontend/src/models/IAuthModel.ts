@@ -1,6 +1,6 @@
 export interface IAuthModel {
-  login: string | null
-  id: string | null
-  accessToken: string | null
-  refreshToken: string | null
+  login: string
+  id: string
+  accessToken: string
+  refreshToken: string
 }

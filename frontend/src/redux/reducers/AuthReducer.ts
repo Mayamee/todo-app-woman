@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IAuthModel } from '../../models/IAuthModel'
-import { loginUser, logoutUser, refreshToken, registerUser } from './ActionCreators/AuthCreators'
+import { loginUser, logoutUser, refreshToken, registerUser } from '../ActionCreators/AuthCreators'
 
 interface IAuthState {
   authInfo: IAuthModel
@@ -11,10 +11,10 @@ interface IAuthState {
 
 const initialState: IAuthState = {
   authInfo: {
-    login: null,
-    id: null,
-    accessToken: null,
-    refreshToken: null,
+    login: '',
+    id: '',
+    accessToken: '',
+    refreshToken: '',
   },
   isAuth: false,
   isLoading: false,
@@ -26,21 +26,81 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Login
     builder
-      .addCase(loginUser.pending, (state) => {})
-      .addCase(loginUser.fulfilled, (state, action) => {})
-      .addCase(loginUser.rejected, (state, action) => {})
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        if (!action.payload) return
+        state.authInfo = action.payload
+        state.isAuth = true
+        state.isLoading = false
+        state.error = null
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload as string
+      })
+    // Register
     builder
-      .addCase(registerUser.pending, (state) => {})
-      .addCase(registerUser.fulfilled, (state, action) => {})
-      .addCase(registerUser.rejected, (state, action) => {})
+      .addCase(registerUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        if (!action.payload) return
+        state.authInfo = action.payload
+        state.isAuth = true
+        state.isLoading = false
+        state.error = null
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload as string
+      })
+    // Logout
     builder
-      .addCase(logoutUser.pending, (state) => {})
-      .addCase(logoutUser.fulfilled, (state, action) => {})
-      .addCase(logoutUser.rejected, (state, action) => {})
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        if (!action.payload) return
+        state.authInfo = {
+          login: '',
+          id: '',
+          accessToken: '',
+          refreshToken: '',
+        }
+        state.isAuth = false
+        state.isLoading = false
+        state.error = null
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload as string
+      })
+    // Refresh
     builder
-      .addCase(refreshToken.pending, (state) => {})
-      .addCase(refreshToken.fulfilled, (state, action) => {})
-      .addCase(refreshToken.rejected, (state, action) => {})
+      .addCase(refreshToken.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        if (!action.payload) return
+        state.authInfo = action.payload
+        state.isAuth = true
+        state.isLoading = false
+        state.error = null
+      })
+      .addCase(refreshToken.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload as string
+        state.isAuth = false
+        state.authInfo = {
+          login: '',
+          id: '',
+          accessToken: '',
+          refreshToken: '',
+        }
+      })
   },
 })
