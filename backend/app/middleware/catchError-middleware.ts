@@ -11,6 +11,8 @@ import ApiError from '../utils/error/api-error'
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @return {void}
+ * @example
+ * app.use(catchErrorMiddleware)
  */
 export default function catchErrorMiddleware(
   err: ApiError | Error,

@@ -14,6 +14,8 @@ import ApiError from '../utils/error/api-error'
  * @throws {ApiError} 401 - Not authorized if supporte token type is not Bearer
  * @throws {ApiError} 401 - Not authorized if access token is not valid
  * @return {void} void
+ * @example
+ * app.use(authMiddleware)
  */
 export default function authMiddleware(req: IAuthRequest, res: Response, next: NextFunction): void {
   try {

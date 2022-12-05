@@ -16,7 +16,8 @@ import { isValidObjectId } from 'mongoose'
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @return {void} void
- *
+ * @example
+ * app.post('somepath', validateLoginRegisterMiddleware, loginController)
  */
 export function validateLoginRegisterMiddleware(
   req: IRegisterLoginRequest,
@@ -41,6 +42,8 @@ export function validateLoginRegisterMiddleware(
  * @param {NextFunction} next - next function
  * @throws {ApiError} 401 - if refresh token is not provided
  * @return {void} void
+ * @example
+ * app.post('/auth/refresh', validateRefreshTokenMiddleware, refreshController)
  */
 export function validateRefreshTokenMiddleware(
   req: Request,
@@ -66,6 +69,8 @@ export function validateRefreshTokenMiddleware(
  * @param {NextFunction} next - next function
  * @throws {ApiError} 400 - if todo payload is not valid
  * @return {void}
+ * @example
+ * app.post('somepath', authMiddleware, validateTodoPalyoadMiddleware, createTodoController)
  */
 export function validateTodoPalyoadMiddleware(
   req: ITodoPayloadRequest,
@@ -91,6 +96,8 @@ export function validateTodoPalyoadMiddleware(
  * @param {Response} res - response
  * @param {NextFunction} next - next function
  * @return {void} void
+ * @example
+ * app.get('somepath', validateGetAllTodosMiddleware, getAllTodos)
  */
 export function validateGetAllTodosMiddleware(
   req: IGetAllTodoRequest,
@@ -125,6 +132,8 @@ export function validateGetAllTodosMiddleware(
  * @param {NextFunction} next - next function
  * @throws {ApiError} 400 - if todo id is not valid
  * @return {void}
+ * @example
+ * app.get('somepath/:id', validateTodoIdMiddleware, getTodoById)
  */
 export function validateParamsIdMiddleware(
   req: IIdParamsRequest,

@@ -1,7 +1,8 @@
+import { Document, Types, UpdateWriteOpResult } from 'mongoose'
 import TodoModel from '../../models/Todo/TodoModel'
 import IDeleteResult from '../../types/IDeleteResult'
 import IGetTodoSettings from '../../types/IGetTodoSettings'
-import ITodoPayload from '../../types/ITodoPayload'
+import ITodoPayload, { ITodoPayloadFromDB } from '../../types/ITodoPayload'
 
 /**
  * Todo Service that contains all the methods for
@@ -11,8 +12,7 @@ class TodoService {
   /**
    * Creates a new todo in the database and returns the created todo
    * @param {ITodoPayload} payload - payload for todo
-   * @return {Promise<ITodoPayload>} created todo
-   * TODO: Type the payload
+   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>>} created todo
    * @example
    * TodoService.createTodo({
    * title: 'test',
@@ -23,7 +23,9 @@ class TodoService {
    * console.log(todo)
    * })
    */
-  async createTodo(payload: ITodoPayload): Promise<any> {
+  async createTodo(
+    payload: ITodoPayload
+  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>> {
     const { title, description, todoBody, ownerId } = payload
     const todo = await TodoModel.create({
       title,
@@ -37,8 +39,7 @@ class TodoService {
    * Get all todos from the database and returns the todos
    * @param {string} ownerId - owner id of the todo
    * @param {IGetTodoSettings} settings - settings for getting todos
-   * @return {Promise<ITodoPayload[] | []>} todos
-   * TODO: Type the payload
+   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>[]>} todos
    * @example
    * TodoService.getAllTodos('someObjectId', {
    * limit: 10,
@@ -47,7 +48,10 @@ class TodoService {
    * console.log(todos)
    * })
    */
-  async getAllTodos(ownerId: string, settings: IGetTodoSettings): Promise<any> {
+  async getAllTodos(
+    ownerId: string,
+    settings: IGetTodoSettings
+  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>[]> {
     if (settings.page) {
       const { limit, page } = settings
       const limitNumber = limit ? Number(limit) : 10
@@ -71,14 +75,16 @@ class TodoService {
    * if todo doesn't exist returns null
    * @param {string} ownerId - owner id
    * @param {string} todoId - todo id
-   * @return {Promise<ITodoPayload | null>} todo
-   * TODO: Type the payload
+   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB> | null>} todo
    * @example
    * TodoService.getTodoById('someObjectId', 'someObjectId').then((todo) => {
    * console.log(todo)
    * })
    */
-  async getTodoById(ownerId: string, todoId: string): Promise<any> {
+  async getTodoById(
+    ownerId: string,
+    todoId: string
+  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB> | null> {
     const todo = await TodoModel.findOne({
       _id: todoId,
       ownerId,
@@ -90,10 +96,13 @@ class TodoService {
    * @param {string} ownerId - owner id of the todo
    * @param {string} todoId - todo id of the todo
    * @param {ITodoPayload} payload - payload for todo update
-   * @return {Promise<UpdateResult>} updated todo
-   * TODO: Type the payload
+   * @return {Promise<UpdateWriteOpResult>} todo update result
    */
-  async updateTodo(ownerId: string, todoId: string, payload: ITodoPayload): Promise<any> {
+  async updateTodo(
+    ownerId: string,
+    todoId: string,
+    payload: ITodoPayload
+  ): Promise<UpdateWriteOpResult> {
     const { title, description, todoBody } = payload
     const todo = await TodoModel.updateOne(
       {

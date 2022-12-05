@@ -32,6 +32,8 @@ main()
  * @description Main function
  * @function main
  * @return {Promise<void>}
+ * @example
+ * main()
  */
 async function main(): Promise<void> {
   try {
