@@ -5,5 +5,5 @@ export default interface ITodoPayload extends ITodoBody {
   ownerId: string
 }
 export interface ITodoPayloadFromDB extends ITodoBody {
-	ownerId: Types.ObjectId
+  ownerId: Types.ObjectId
 }
