@@ -4,18 +4,19 @@ import { loginUser, logoutUser, refreshToken, registerUser } from './ActionCreat
 
 interface IAuthState {
   authInfo: IAuthModel
+  isAuth: boolean
   isLoading: boolean
   error: string | null
 }
 
 const initialState: IAuthState = {
   authInfo: {
-    isAuthenticated: false,
     login: null,
     id: null,
     accessToken: null,
     refreshToken: null,
   },
+  isAuth: false,
   isLoading: false,
   error: null,
 }

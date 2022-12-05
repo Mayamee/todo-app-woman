@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-const $api = axios.create({ withCredentials: true, baseURL: 'http://localhost:5050/api' })
+const API = axios.create({ withCredentials: true, baseURL: 'http://localhost:5050/api/v1' })
 
-export { $api }
+export { API }
