@@ -12,7 +12,7 @@ class TodoService {
   /**
    * Creates a new todo in the database and returns the created todo
    * @param {ITodoPayload} payload - payload for todo
-   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>>} created todo
+   * @return {Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB>>} created todo
    * @example
    * TodoService.createTodo({
    * title: 'test',
@@ -25,7 +25,7 @@ class TodoService {
    */
   async createTodo(
     payload: ITodoPayload
-  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>> {
+  ): Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB>> {
     const { title, description, todoBody, ownerId } = payload
     const todo = await TodoModel.create({
       title,
@@ -39,7 +39,7 @@ class TodoService {
    * Get all todos from the database and returns the todos
    * @param {string} ownerId - owner id of the todo
    * @param {IGetTodoSettings} settings - settings for getting todos
-   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>[]>} todos
+   * @return {Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB>[]>} todos
    * @example
    * TodoService.getAllTodos('someObjectId', {
    * limit: 10,
@@ -51,7 +51,7 @@ class TodoService {
   async getAllTodos(
     ownerId: string,
     settings: IGetTodoSettings
-  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB>[]> {
+  ): Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB>[]> {
     if (settings.page) {
       const { limit, page } = settings
       const limitNumber = limit ? Number(limit) : 10
@@ -75,7 +75,7 @@ class TodoService {
    * if todo doesn't exist returns null
    * @param {string} ownerId - owner id
    * @param {string} todoId - todo id
-   * @return {Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB> | null>} todo
+   * @return {Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB> | null>} todo
    * @example
    * TodoService.getTodoById('someObjectId', 'someObjectId').then((todo) => {
    * console.log(todo)
@@ -84,7 +84,7 @@ class TodoService {
   async getTodoById(
     ownerId: string,
     todoId: string
-  ): Promise<Document<Types.ObjectId, any, ITodoPayloadFromDB> | null> {
+  ): Promise<Document<Types.ObjectId, unknown, ITodoPayloadFromDB> | null> {
     const todo = await TodoModel.findOne({
       _id: todoId,
       ownerId,
