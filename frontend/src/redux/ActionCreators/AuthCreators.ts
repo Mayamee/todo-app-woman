@@ -30,9 +30,9 @@ export const registerUser = createAsyncThunk(
 )
 export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, thunkApi) => {
   try {
-		const { data } = await AuthService.logout()
-		localStorage.removeItem('token')
-		return data
+    const { data } = await AuthService.logout()
+    localStorage.removeItem('token')
+    return data
   } catch (error) {
     if (!(error instanceof Error)) return
     return thunkApi.rejectWithValue(error.message)
@@ -40,9 +40,9 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, thunkApi
 })
 export const refreshToken = createAsyncThunk('auth/refreshToken', async (_, thunkApi) => {
   try {
-		const { data } = await AuthService.refreshToken()
-		localStorage.setItem('token', data.accessToken)
-		return data
+    const { data } = await AuthService.refreshToken()
+    localStorage.setItem('token', data.accessToken)
+    return data
   } catch (error) {
     if (!(error instanceof Error)) return
     return thunkApi.rejectWithValue(error.message)
