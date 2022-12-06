@@ -24,11 +24,8 @@ API.interceptors.response.use(
           withCredentials: true,
         })
         localStorage.setItem('token', response.data.accessToken)
-        console.log('Original request: ', originalRequest)
         return API.request(originalRequest)
-      } catch (error) {
-        console.log('Not authorized')
-      }
+      } catch (error) {}
     }
     throw error
   }
