@@ -3,7 +3,7 @@ export const TOOLBAR_MENU_ITEM_ICON_SIZE = '25px'
 export const AUTH = {
   text: {
     title: {
-      login: 'Login',
+      login: 'Sign in',
       register: 'Sign up',
     },
     subtitle: {
