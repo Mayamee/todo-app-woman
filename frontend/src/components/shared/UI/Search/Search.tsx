@@ -15,7 +15,7 @@ export const Search: FC<ISearchProps> = ({ onChange, placeholder }) => {
   return (
     <div className={`${styles['search']} ${isInputFocused ? styles['search-focused'] : ''}`}>
       <span className={styles['search-search-icon']}>
-        <IconButton size={25} onClick={() => inputRef.current?.focus()} icon={<SearchIcon />} />
+        <IconButton size={40} onClick={() => inputRef.current?.focus()} icon={<SearchIcon />} />
       </span>
       <input
         type="text"
@@ -31,7 +31,7 @@ export const Search: FC<ISearchProps> = ({ onChange, placeholder }) => {
       />
       {value && (
         <span className={styles['search-close-icon']}>
-          <IconButton size={25} onClick={() => setValue('')} icon={<CloseIcon />} />
+          <IconButton size={40} onClick={() => setValue('')} icon={<CloseIcon />} rounded />
         </span>
       )}
     </div>

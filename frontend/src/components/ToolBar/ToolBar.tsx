@@ -26,7 +26,7 @@ const ToolBar: FC<unknown> = () => {
   return (
     <div className={styles['toolbar-body']}>
       <div className={styles['toolbar-body-menuButton']}>
-        <Menu enterIconSize={30} enterIcon={<MenuIcon />} align="right">
+        <Menu enterIconSize={50} roundedIcon enterIcon={<MenuIcon />} align="right">
           {isBigPhone && <MenuItem>{login}</MenuItem>}
           <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Todos
@@ -50,7 +50,7 @@ const ToolBar: FC<unknown> = () => {
       <div className={styles['toolbar-body-avatar']}>
         <Menu
           enterIcon={<img src={TemplateAvatar} alt="Avatar" />}
-          enterIconSize={40}
+          enterIconSize={70}
           roundedIcon
           align="left"
         >
