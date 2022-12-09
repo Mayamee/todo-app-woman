@@ -8,6 +8,8 @@ import { HEADER_HEIGHT } from '../../constants/Static'
 import { AuthPopup } from '../../components/AuthPopup/AuthPopup'
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux'
 import { refreshToken } from '../../redux/ActionCreators/AuthCreators'
+import TwoLinesSpinner from '../../components/shared/UI/Loaders/TwoLinesSpinner/TwoLinesSpinner'
+import GrowingCircle from '../../components/shared/UI/Loaders/GrowingCircle/GrowingCircle'
 interface ILayoutProps {
   children: ReactNode
 }

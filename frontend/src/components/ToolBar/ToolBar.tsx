@@ -12,12 +12,14 @@ import MenuItem from '../shared/Menu/MenuItem/MenuItem'
 import { TOOLBAR_MENU_ITEM_ICON_SIZE } from '../../constants/Static'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import MediaQueries from '../../constants/MediaQueries'
-import { useAppSelector } from '../../hooks/useRedux'
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux'
+import { logoutUser } from '../../redux/ActionCreators/AuthCreators'
 
 const ToolBar: FC<unknown> = () => {
   const {
     authInfo: { login },
   } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
   const [, setSearchValue] = useState('')
   const isBigPhone = useMediaQuery(MediaQueries.bigPhone)
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +57,11 @@ const ToolBar: FC<unknown> = () => {
           align="left"
         >
           <MenuItem>{login}</MenuItem>
-          <MenuItem icon={<LogoutIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
+          <MenuItem
+            icon={<LogoutIcon />}
+            onClick={() => dispatch(logoutUser())}
+            inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}
+          >
             Logout
           </MenuItem>
         </Menu>
