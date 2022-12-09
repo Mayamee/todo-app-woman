@@ -41,7 +41,7 @@ export const AUTH = {
         message: 'Login must be at most 16 characters',
       },
       pattern: {
-				regex: /^[a-zA-Z][a-zA-Z0-9]*$/,
+        regex: /^[a-zA-Z][a-zA-Z0-9]*$/,
         message: 'Login must start with a letter and contain only latin letters and numbers',
       },
     },
