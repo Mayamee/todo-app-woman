@@ -10,7 +10,10 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem('token', data.accessToken)
       return data
     } catch (error) {
-      if (!(error instanceof Error)) return
+      if (!(error instanceof Error)) {
+        console.error(error)
+        return
+      }
       return thunkApi.rejectWithValue(error.message)
     }
   }
@@ -23,7 +26,10 @@ export const registerUser = createAsyncThunk(
       localStorage.setItem('token', data.accessToken)
       return data
     } catch (error) {
-      if (!(error instanceof Error)) return
+      if (!(error instanceof Error)) {
+        console.error(error)
+        return
+      }
       return thunkApi.rejectWithValue(error.message)
     }
   }
@@ -34,7 +40,10 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, thunkApi
     localStorage.removeItem('token')
     return data
   } catch (error) {
-    if (!(error instanceof Error)) return
+    if (!(error instanceof Error)) {
+      console.error(error)
+      return
+    }
     return thunkApi.rejectWithValue(error.message)
   }
 })
@@ -44,7 +53,10 @@ export const refreshToken = createAsyncThunk('auth/refreshToken', async (_, thun
     localStorage.setItem('token', data.accessToken)
     return data
   } catch (error) {
-    if (!(error instanceof Error)) return
+    if (!(error instanceof Error)) {
+      console.error(error)
+      return
+    }
     return thunkApi.rejectWithValue(error.message)
   }
 })

@@ -12,8 +12,12 @@ import MenuItem from '../shared/Menu/MenuItem/MenuItem'
 import { TOOLBAR_MENU_ITEM_ICON_SIZE } from '../../constants/Static'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import MediaQueries from '../../constants/MediaQueries'
+import { useAppSelector } from '../../hooks/useRedux'
 
 const ToolBar: FC<unknown> = () => {
+  const {
+    authInfo: { login },
+  } = useAppSelector((state) => state.auth)
   const [, setSearchValue] = useState('')
   const isBigPhone = useMediaQuery(MediaQueries.bigPhone)
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +27,7 @@ const ToolBar: FC<unknown> = () => {
     <div className={styles['toolbar-body']}>
       <div className={styles['toolbar-body-menuButton']}>
         <Menu enterIconSize={30} enterIcon={<MenuIcon />} align="right">
-          {isBigPhone && <MenuItem>some user</MenuItem>}
+          {isBigPhone && <MenuItem>{login}</MenuItem>}
           <MenuItem icon={<AllIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Todos
           </MenuItem>
@@ -50,7 +54,7 @@ const ToolBar: FC<unknown> = () => {
           roundedIcon
           align="left"
         >
-          <MenuItem>some user</MenuItem>
+          <MenuItem>{login}</MenuItem>
           <MenuItem icon={<LogoutIcon />} inconSize={TOOLBAR_MENU_ITEM_ICON_SIZE}>
             Logout
           </MenuItem>

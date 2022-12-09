@@ -5,12 +5,15 @@ import { ReactComponent as BgImage } from '../../assets/images/bg-auth.svg'
 import { ReactComponent as AlertIcon } from '../../assets/images/alert.svg'
 import { AUTH } from '../../constants/Static'
 import TooltipButton from '../shared/UI/TooltipButton/TooltipButton'
+import { useAppDispatch } from '../../hooks/useRedux'
+import { loginUser, registerUser } from '../../redux/ActionCreators/AuthCreators'
 type Profile = {
   login: string
   password: string
 }
 
 export const AuthPopup: FC<unknown> = () => {
+  const dispatch = useAppDispatch()
   const [isLogin, setIsLogin] = useState(true)
   const authTextKey = isLogin ? 'login' : 'register'
   const {
@@ -25,10 +28,13 @@ export const AuthPopup: FC<unknown> = () => {
     },
   })
   const onSubmit = handleSubmit((data) => {
-    console.log({
-      login: data.login,
-      password: data.password,
-    })
+    const authCreator = isLogin ? loginUser : registerUser
+    dispatch(
+      authCreator({
+        login: data.login,
+        password: data.password,
+      })
+    )
     reset()
   })
   return (
@@ -48,6 +54,18 @@ export const AuthPopup: FC<unknown> = () => {
                   placeholder="Login"
                   {...register('login', {
                     required: AUTH.validation.login.required.message,
+                    pattern: {
+                      value: AUTH.validation.login.pattern.regex,
+                      message: AUTH.validation.login.pattern.message,
+                    },
+                    minLength: {
+                      value: AUTH.validation.login.minLength.value,
+                      message: AUTH.validation.login.minLength.message,
+                    },
+                    maxLength: {
+                      value: AUTH.validation.login.maxLength.value,
+                      message: AUTH.validation.login.maxLength.message,
+                    },
                   })}
                 />
                 {errors.login ? (

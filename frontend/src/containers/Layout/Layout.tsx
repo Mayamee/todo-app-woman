@@ -6,13 +6,23 @@ import styles from './Layout.module.scss'
 import Plug from '../../components/shared//Plug/Plug'
 import { HEADER_HEIGHT } from '../../constants/Static'
 import { AuthPopup } from '../../components/AuthPopup/AuthPopup'
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux'
+import { refreshToken } from '../../redux/ActionCreators/AuthCreators'
 interface ILayoutProps {
   children: ReactNode
 }
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
+  const { isAuth } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
   const { scrollY } = useScroll()
   const [isScrolling, setScrolling] = useState(false)
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      console.log('Layout.tsx useEffect')
+      dispatch(refreshToken())
+    }
+  }, [])
   useEffect(() => {
     return scrollY.onChange((offsetY) => {
       if (offsetY === 0) {
@@ -41,7 +51,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <footer className={styles.footer}>
         <Container fluid>Some footer content</Container>
       </footer>
-      <AuthPopup />
+      {!isAuth && <AuthPopup />}
     </div>
   )
 }
