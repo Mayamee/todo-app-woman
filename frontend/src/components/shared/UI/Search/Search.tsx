@@ -1,8 +1,9 @@
-import { ChangeEvent, FC, useRef, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import styles from './Search.module.scss'
 import { ReactComponent as SearchIcon } from './assets/search.svg'
 import { ReactComponent as CloseIcon } from './assets/close.svg'
 import IconButton from '../IconButton/IconButton'
+import SvgContainer from '../SvgContainer/SvgContainer'
 
 interface ISearchProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -11,16 +12,14 @@ interface ISearchProps {
 export const Search: FC<ISearchProps> = ({ onChange, placeholder }) => {
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [value, setValue] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
   return (
     <div className={`${styles['search']} ${isInputFocused ? styles['search-focused'] : ''}`}>
       <span className={styles['search-search-icon']}>
-        <IconButton size={40} onClick={() => inputRef.current?.focus()} icon={<SearchIcon />} />
+        <SvgContainer icon={<SearchIcon />} size={'25px'} />
       </span>
       <input
         type="text"
         value={value}
-        ref={inputRef}
         placeholder={placeholder}
         onFocus={() => setIsInputFocused(true)}
         onBlur={() => setIsInputFocused(false)}

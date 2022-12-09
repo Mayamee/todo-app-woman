@@ -34,14 +34,19 @@ const ButtonContainer = styled.button<IButtonContainerProps>`
     transition: background-color 0.2s ease;
     border-radius: ${({ rounded }) => (rounded ? '50%' : '0')};
   }
+  &:active {
+    &:before {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
   &:hover {
     &:before {
       background-color: rgba(0, 0, 0, 0.1);
     }
-    &:active {
-      &:before {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
+  }
+  &:focus {
+    &:before {
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 `
