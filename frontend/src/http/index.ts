@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { IAuthModel } from '../models/IAuthModel'
+import { API_URL } from '../vars'
 
-const API_URL = 'http://localhost:5050/api/v1'
 const API = axios.create({ withCredentials: true, baseURL: API_URL })
-
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
   config.headers = {

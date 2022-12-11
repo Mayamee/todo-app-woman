@@ -3,14 +3,14 @@ const fs = require("fs");
 const propmpt = require("prompt");
 const rootProjectPath = path.join(__dirname, "..");
 const rootBackendPath = path.join(rootProjectPath, "backend");
+const rootFrontendPath = path.join(rootProjectPath, "frontend");
 const dockerDbSecretsPath = path.join(
   rootProjectPath,
   "docker",
   "mongo",
   "secrets"
 );
-const envPath = path.join(rootBackendPath, "app", "env");
-
+const envBackendPath = path.join(rootBackendPath, "app", "env");
 // Create docker secrets for mongo
 fs.existsSync(dockerDbSecretsPath) ||
   fs.mkdirSync(dockerDbSecretsPath, { recursive: true });
@@ -30,6 +30,14 @@ propmpt
       name: "backend_origin",
       description: "Enter backend origin",
       default: "http://localhost:5050",
+      type: "string",
+      required: true,
+      before: (value) => value.trim(),
+    },
+    {
+      name: "backend_api_url",
+      description: "Enter backend api url",
+      default: "http://localhost:5050/api/v1",
       type: "string",
       required: true,
       before: (value) => value.trim(),
@@ -66,14 +74,16 @@ propmpt
     console.log("Creating docker secrets for mongo");
     const {
       backend_host,
-      backend_port,
       backend_origin,
+      backend_api_url,
       jwt_access_secret,
       jwt_refresh_secret,
       mongo_pass,
     } = result;
 
-    const prodData =
+    const prodFrontendData = `VITE_API_URL=${backend_api_url}` + "\n";
+
+    const prodBackendData =
       `PORT=5050` +
       "\n" +
       `HOST=${backend_host}` +
@@ -90,6 +100,11 @@ propmpt
       result.mongo_pass
     );
     console.info("Docker secrets created");
-    fs.writeFileSync(path.join(envPath, "prod.env"), prodData);
-    console.info("Production env file created");
+    fs.writeFileSync(path.join(envBackendPath, "prod.env"), prodBackendData);
+    console.info("Production env backend file created");
+    fs.writeFileSync(
+      path.join(rootFrontendPath, ".env.production"),
+      prodFrontendData
+    );
+    console.info("Production env frontend file created");
   }, console.error);
