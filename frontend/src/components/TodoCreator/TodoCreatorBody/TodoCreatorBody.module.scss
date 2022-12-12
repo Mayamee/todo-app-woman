@@ -1,0 +1,24 @@
+.todo-creator-body {
+  padding: 15px;
+  &-desc-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  &-text {
+    &-wrapper {
+      flex: 1 0 auto;
+			margin-bottom: 35px;
+    }
+    &-title {
+      font-size: 1.5rem;
+			margin-bottom: 20px;
+    }
+    &-description {
+			font-size: 1.1rem;
+    }
+  }
+  &-pin {
+  }
+}

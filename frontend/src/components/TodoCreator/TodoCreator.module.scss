@@ -1,0 +1,14 @@
+.todo-creator {
+  &-wrapper {
+    font-family: 'Ubuntu', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgb(172, 172, 172);
+  }
+  &-enter {
+    font-size: 1.2rem;
+    padding: 15px;
+    cursor: text;
+  }
+}
