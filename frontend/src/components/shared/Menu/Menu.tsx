@@ -1,4 +1,5 @@
-import { FC, ReactNode, useEffect, useId, useState } from 'react'
+import { FC, ReactNode, useRef, useState } from 'react'
+import { useOnClickOutside } from 'usehooks-ts'
 import styles from './Menu.module.scss'
 import IconButton from '../UI/IconButton/IconButton'
 
@@ -10,29 +11,12 @@ interface IMenuProps {
   align: 'left' | 'right'
 }
 
-const hasParentId = (node: HTMLElement, id: string) => {
-  while (true) {
-    if (node.id === id) {
-      return true
-    }
-    if (!node.parentNode) return false
-    node = node.parentNode as HTMLElement
-  }
-}
-
 const Menu: FC<IMenuProps> = ({ enterIcon, enterIconSize, children, align, roundedIcon }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const dropdownId = useId()
-  useEffect(() => {
-    const closeMenu = (e: MouseEvent) => {
-      const clickedElement = e.target as HTMLElement
-      !hasParentId(clickedElement, dropdownId) && setIsMenuOpen(false)
-    }
-    document.addEventListener('click', closeMenu)
-    return () => document.removeEventListener('click', closeMenu)
-  }, [])
+  const menuRef = useRef(null)
+  useOnClickOutside(menuRef, () => setIsMenuOpen(false))
   return (
-    <div id={dropdownId} className={styles['dropdown_menu']}>
+    <div ref={menuRef} className={styles['dropdown_menu']}>
       <IconButton
         size={enterIconSize}
         icon={enterIcon}

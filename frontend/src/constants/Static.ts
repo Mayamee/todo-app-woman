@@ -57,3 +57,24 @@ export const AUTH = {
     },
   },
 }
+export const TODO = {
+  creator: {
+    title: {
+      maxSize: 150,
+      placeholder: 'Type todo title',
+    },
+    description: {
+      maxSize: 300,
+      placeholder: 'Description...',
+    },
+    checkbox: {
+      borderSize: 2,
+      color: '#000',
+      size: 20,
+    },
+    addTodo: {
+      maxSize: 150,
+      placeholder: 'Type your task here...',
+    },
+  },
+}
