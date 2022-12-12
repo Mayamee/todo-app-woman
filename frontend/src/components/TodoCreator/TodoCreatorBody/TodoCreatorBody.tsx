@@ -5,8 +5,6 @@ import { ReactComponent as PinnedIcon } from '../../../assets/images/pin.svg'
 import { ReactComponent as UnPinnedIcon } from '../../../assets/images/pin-outlined.svg'
 import TextArea from '../../shared/UI/TextArea/TextArea'
 
-// interface ITodoCreatorBodyProps {}
-
 const TodoCreatorBody: FC<unknown> = () => {
   const [isPinned, setIsPinned] = useState(false)
   const [todoTitleValue, setTodoTitleValue] = useState('')
@@ -48,6 +46,7 @@ const TodoCreatorBody: FC<unknown> = () => {
           <IconButton icon={<PinIcon />} size={40} onClick={togglePinHandler} rounded />
         </div>
       </div>
+      <div className={styles['todo-creator-body-add-todo-block']}>add todo</div>
     </div>
   )
 }
