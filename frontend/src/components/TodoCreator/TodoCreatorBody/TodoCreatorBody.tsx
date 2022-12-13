@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { ChangeEvent, FC, useCallback, useState } from 'react'
 import IconButton from '../../shared/UI/IconButton/IconButton'
 import styles from './TodoCreatorBody.module.scss'
 import { ReactComponent as PinnedIcon } from '../../../assets/images/pin.svg'
@@ -7,33 +7,50 @@ import { ReactComponent as AddIcon } from '../../../assets/images/add.svg'
 import TextArea from '../../shared/UI/TextArea/TextArea'
 import RoundedCheckBox from '../../shared/UI/RoundedCheckBox/RoundedCheckBox'
 import { TODO } from '../../../constants/Static'
+import TodoCreatorList from './TodoCreatorList/TodoCreatorList'
+import { ITodoElemWithoutId } from '../../../models/ITodoModel'
 
 const TodoCreatorBody: FC<unknown> = () => {
   const [isAddCheckBoxChecked, setIsAddCheckBoxChecked] = useState(false)
+  const [todoCreatorArray, setTodoCreatorArray] = useState<ITodoElemWithoutId[]>([])
   const [isPinned, setIsPinned] = useState(false)
   const PinIcon = isPinned ? PinnedIcon : UnPinnedIcon
   const [todoTitleValue, setTodoTitleValue] = useState('')
   const [todoDescriptionValue, setTodoDescriptionValue] = useState('')
   const [todoAddValue, setTodoAddValue] = useState('')
   const togglePinHandler = () => setIsPinned((p) => !p)
+  const appendTodoHandler = () => {
+    if (todoAddValue.length === 0) return
+    setTodoCreatorArray((a) => [...a, { text: todoAddValue, isDone: isAddCheckBoxChecked }])
+    setTodoAddValue('')
+    setIsAddCheckBoxChecked(false)
+  }
   const toggleCheckBoxHandler = () => setIsAddCheckBoxChecked((c) => !c)
-  const handleTodoTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length > TODO.creator.title.maxSize) return
+  const handleTodoDelete = useCallback((index: number) => {
+    setTodoCreatorArray((a) => a.filter((_, i) => i !== index))
+  }, [])
+  const handleTodoCheckChange = useCallback((index: number) => {
+    setTodoCreatorArray((a) => {
+      const newArray = [...a]
+      newArray[index].isDone = !newArray[index].isDone
+      return newArray
+    })
+  }, [])
+  const handleTodoEdit = useCallback((index: number, text: string) => {
+    setTodoCreatorArray((a) => {
+      const newArray = [...a]
+      newArray[index].text = text
+      return newArray
+    })
+  }, [])
+  const handleTodoTitleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTodoTitleValue(e.target.value)
-    e.target.style.height = 'inherit'
-    e.target.style.height = `${e.target.scrollHeight}px`
   }
   const handleTodoDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length > TODO.creator.description.maxSize) return
     setTodoDescriptionValue(e.target.value)
-    e.target.style.height = 'inherit'
-    e.target.style.height = `${e.target.scrollHeight}px`
   }
   const handleTodoAddChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length > TODO.creator.addTodo.maxSize) return
     setTodoAddValue(e.target.value)
-    e.target.style.height = 'inherit'
-    e.target.style.height = `${e.target.scrollHeight}px`
   }
   return (
     <div className={styles['todo-creator-body']}>
@@ -44,6 +61,7 @@ const TodoCreatorBody: FC<unknown> = () => {
               placeholder={TODO.creator.title.placeholder}
               value={todoTitleValue}
               onChange={handleTodoTitleChange}
+              maxSize={TODO.creator.title.maxSize}
             />
           </div>
           <div className={styles['todo-creator-body-text-description']}>
@@ -51,6 +69,7 @@ const TodoCreatorBody: FC<unknown> = () => {
               placeholder={TODO.creator.description.placeholder}
               value={todoDescriptionValue}
               onChange={handleTodoDescriptionChange}
+              maxSize={TODO.creator.description.maxSize}
             />
           </div>
         </div>
@@ -71,9 +90,18 @@ const TodoCreatorBody: FC<unknown> = () => {
             placeholder={TODO.creator.addTodo.placeholder}
             value={todoAddValue}
             onChange={handleTodoAddChange}
+            maxSize={TODO.creator.addTodo.maxSize}
           />
         </div>
-        <IconButton icon={<AddIcon />} size={40} onClick={togglePinHandler} rounded />
+        <IconButton icon={<AddIcon />} size={40} onClick={appendTodoHandler} rounded />
+      </div>
+      <div className="todo-creator-body-list">
+        <TodoCreatorList
+          data={todoCreatorArray}
+          onCheckChange={handleTodoCheckChange}
+          onDelete={handleTodoDelete}
+          onEdit={handleTodoEdit}
+        />
       </div>
     </div>
   )
