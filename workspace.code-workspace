@@ -11,8 +11,8 @@
       "path": "."
     }
   ],
-  "settings": {
-    "typescript.tsdk": ".yarn/sdks/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true
-  }
+  // "settings": {
+  //   "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  //   "typescript.enablePromptUseWorkspaceTsdk": true
+  // }
 }

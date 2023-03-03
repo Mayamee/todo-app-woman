@@ -46,5 +46,9 @@
     "typescript": "*",
     "vite": "^3.2.3",
     "vite-plugin-svgr": "^2.2.2"
+  },
+  "volta": {
+    "node": "18.14.0",
+    "yarn": "1.22.19"
   }
 }
