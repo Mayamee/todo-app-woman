@@ -4,8 +4,5 @@ WORKDIR /usr/src/app
 ENV NODE_ENV=production
 COPY build .
 EXPOSE 5050
-RUN corepack enable && \
-    corepack prepare yarn@stable --activate && \
-    corepack prepare yarn@3.3.0 --activate
 RUN ["yarn", "install"]
 ENTRYPOINT ["yarn", "node", "app/app.js"]
