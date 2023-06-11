@@ -8,7 +8,7 @@ services:
     secrets:
       - mongo_password
     networks:
-      - mongo
+      - todo-boilerplate-net
     volumes:
       - todo-boilerplate-db:/data/db
   backend:
@@ -20,7 +20,7 @@ services:
     env_file:
       - prod.env
     networks:
-      - mongo
+      - todo-boilerplate-net
     depends_on:
       - db
     restart: always
@@ -32,7 +32,7 @@ secrets:
     file: ./secrets/db_pass
 
 networks:
-  mongo:
+  todo-boilerplate-net:
     driver: bridge
 
 volumes:
