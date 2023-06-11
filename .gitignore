@@ -118,7 +118,7 @@ prod.env
 
 #docker
 
-docker/**/secrets
+secrets/**/*
 
 #build
 

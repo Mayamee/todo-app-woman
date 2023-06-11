@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.6"
 services:
   db:
     image: mongo
@@ -7,17 +7,33 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo_password
     secrets:
       - mongo_password
+    networks:
+      - mongo
+    volumes:
+      - todo-boilerplate-db:/data/db
   backend:
-    restart: always
-    environment:
-      - NODE_ENV=production
-    build: 
-      context: .
-      dockerfile: docker/api/dockerfile
+    image: todo-api-boilerplate
     ports:
       - "5050:5050"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - prod.env
+    networks:
+      - mongo
     depends_on:
       - db
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
 secrets:
   mongo_password:
-    file: ./docker/mongo/secrets/db_pass
+    file: ./secrets/db_pass
+
+networks:
+  mongo:
+    driver: bridge
+
+volumes:
+  todo-boilerplate-db:

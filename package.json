@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon .",
     "start": "node app/app.js",
-    "build": "npm-run-all --serial build:clear build:compile build:copy-configs && echo 'Build complete.'",
+    "build": "npm-run-all --serial build:clear build:compile && echo 'Build complete.'",
     "build:clear": "rimraf build && echo 'Build directory cleared.'",
     "build:compile": "tsc && echo 'Transpile complete.'",
-    "build:copy-configs": "copyfiles yarn.lock package.json build && copyfiles -u 2 ./app/env/*.env ./build/app/env && echo 'Config files copied.'",
     "prettify": "prettier --write .",
     "renderDepsGraph": "madge --exclude types --image docs/depsGraph/dependency-graph.svg app/app.ts"
   },
