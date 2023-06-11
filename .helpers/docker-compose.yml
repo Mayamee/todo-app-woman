@@ -13,4 +13,4 @@ services:
 
 secrets:
   mongo_password:
-    file: ./secrets/db_pass
+    file: ../secrets/db_pass

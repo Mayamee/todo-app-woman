@@ -1,11 +1,15 @@
 import dotenv from 'dotenv'
 import { Secret } from 'jsonwebtoken'
-import { appDevEnvPath, appProdEnvPath } from '../utils/filesystem/paths'
+import { appDevEnvPath } from '../utils/filesystem/paths'
 
 const mode = process.env.NODE_ENV || 'production'
-dotenv.config({
-  path: mode === 'development' ? appDevEnvPath : appProdEnvPath,
-})
+
+if (mode === 'development') {
+  dotenv.config({
+    path: appDevEnvPath,
+  })
+}
+
 const PORT = process.env.PORT || '8080'
 const HOST = process.env.HOST || 'localhost'
 const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING || ''
