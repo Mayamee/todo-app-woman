@@ -118,7 +118,7 @@ prod.env
 
 #docker
 
-secrets/**/*
+secrets/db_pass
 
 #build
 
